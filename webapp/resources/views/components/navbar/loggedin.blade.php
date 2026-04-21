@@ -8,7 +8,7 @@
             <ul
                 tabindex="-1"
                 class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                <li><a href="{{ route('login') }}">Masuk Akun</a></li>
+                <li><a href="{{ route('logout') }}">Keluar Akun</a></li>
             </ul>
         </div>
         <a class="btn btn-neutral text-xl" href="{{ route('index') }}">
@@ -18,7 +18,7 @@
 
     <div class="navbar-end hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
-            <li><a href="{{ route('login') }}">Masuk Akun</a></li>
+            <li><a href="{{ route('logout') }}">Keluar Akun</a></li>
         </ul>
     </div>
 </div>
