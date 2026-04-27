@@ -18,7 +18,7 @@ class AccountFactory extends Factory
     public function definition(): array
     {
         $password = '$argon2id$v=19$m=65536,t=3,p=1$6LuftmlqbGViZY+EU9lH3AJMNLnCGnURLEe2b6MdnIo$rdEjzN4sIGIf2HtdSOh8RmKcOV98VBkXknYSURo3HyY';
-        $role = 'PARTICIPANT';
+        $role = 'OPERATOR';
 
         return [
             'account_id' => $this->faker->uuid(),
