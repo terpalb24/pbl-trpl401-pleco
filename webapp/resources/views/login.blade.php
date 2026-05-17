@@ -8,7 +8,7 @@
     <title>Masuk Akun | PLECO</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <!-- Tampilan sementara -->
 <body class="flex flex-col min-h-screen bg-[url('http://localhost:8000/images/background.png')] bg-cover bg-center">
