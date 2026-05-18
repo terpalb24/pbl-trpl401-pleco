@@ -8,7 +8,7 @@
     <title>PLECO WebApp</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen flex flex-col bg-[url('http://localhost:8000/images/background.png')] bg-cover bg-center">
     <x-navbar.index></x-navbar.index>

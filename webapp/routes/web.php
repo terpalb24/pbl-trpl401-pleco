@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
@@ -20,6 +21,9 @@ Route::post('/login', [LoginController::class, 'store'])
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    Route::get('/account', [AccountController::class, 'index'])->name('account.settings');
+    Route::put('/account', [AccountController::class, 'update'])->name('account.update');
 
     Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 });
