@@ -20,7 +20,7 @@ class AccountController extends Controller
         $user = auth()->user();
 
         $validated = $request->validate([
-            'full_name' => ['required', 'string', 'max:255'],
+            'full_name' => ['required', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:accounts,email,' . $user->account_id . ',account_id'],
             'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);

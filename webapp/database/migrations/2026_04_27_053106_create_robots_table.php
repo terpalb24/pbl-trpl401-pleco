@@ -12,7 +12,7 @@ return new class extends Migration
             $table->uuid('robot_id')->primary();
             $table->string('robot_name', 32);
             $table->uuid('owner_id');
-            $table->string('api_key', 64)->unique();
+            $table->string('api_key', 64)->unique()->nullable();
 
             $table->foreign('owner_id')
                 ->references('account_id')
