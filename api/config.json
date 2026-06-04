@@ -1,0 +1,7 @@
+{
+	"websocket": {
+		"port": 8080,
+		"closeTimeout": 5000,
+		"maxPayload": 149
+	}
+}

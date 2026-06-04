@@ -1,0 +1,26 @@
+{
+  "name": "pleco-api",
+  "version": "1.0.0",
+  "description": "API for PLECO IoT communication using Secure WebSocket",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.1.3",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mariadb": "^3.5.2",
+    "ws": "^8.21.0"
+  }
+}
