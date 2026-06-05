@@ -1,24 +1,68 @@
-<div class="navbar bg-neutral text-neutral-content shadow-sm">
-    <div class="navbar-start">
-        <div class="dropdown">
-            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+<nav class="sticky top-0 z-50 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <!-- Left: Logo -->
+            <div class="flex-shrink-0">
+                <a href="{{ route('index') }}" class="flex items-center">
+                    <img src="{{ asset('images/logo_text.png') }}" alt="Logo PLECO" class="h-8">
+                </a>
             </div>
 
-            <ul
-                tabindex="-1"
-                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                <li><a href="{{ route('login') }}">Masuk Akun</a></li>
-            </ul>
+            <!-- Right: Navigation Links & CTA -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Home</a>
+                <a href="#benefit" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Benefit</a>
+                <a href="#tentang" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Tentang</a>
+                <a href="#tim" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Tim</a>
+                <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-all rounded-lg shadow-sm">
+                    Masuk
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
         </div>
-        <a class="btn btn-neutral text-xl" href="{{ route('index') }}">
-            <img src="{{ asset('images/logo_text.png') }}" alt="Logo PLECO" class="h-8">
-        </a>
     </div>
 
-    <div class="navbar-end hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
-            <li><a href="{{ route('login') }}">Masuk Akun</a></li>
-        </ul>
+    <!-- Mobile Menu -->
+    <div class="hidden md:hidden border-b border-gray-100 bg-white" id="mobile-menu">
+        <div class="px-4 pt-2 pb-4 space-y-2">
+            <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-blue-600">Home</a>
+            <a href="#benefit" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-blue-600">Benefit</a>
+            <a href="#tentang" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-blue-600">Tentang</a>
+            <a href="#tim" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-blue-600">Tim</a>
+            <div class="pt-2">
+                <a href="{{ route('login') }}" class="block w-full text-center px-4 py-2.5 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg">
+                    Masuk
+                </a>
+            </div>
+        </div>
     </div>
-</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.querySelector('.mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+                
+                // Close menu when link is clicked
+                menu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menu.classList.add('hidden');
+                    });
+                });
+            }
+        });
+    </script>
+</nav>
+
