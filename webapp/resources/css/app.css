@@ -9,6 +9,18 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+        
+    --color-blue-50: #f4f4fe;
+    --color-blue-100: #e5e4fc;
+    --color-blue-500: #2F27CE;
+    --color-blue-600: #2F27CE;
+    --color-blue-700: #1c159e;
+    
+    --color-indigo-50: #f4f4fe;
+    --color-indigo-100: #e5e4fc;
+    --color-indigo-500: #2F27CE;
+    --color-indigo-600: #2F27CE;
+    --color-indigo-700: #1c159e;
 }
 
 @plugin "daisyui" {
@@ -16,3 +28,8 @@
 }
 
 @plugin "flowbite/plugin";
+
+.bg-home {
+    background-color: #2F27CE;
+}
+    

@@ -29,7 +29,7 @@
                 <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl leading-tight mb-6">
                     Teknologi Cerdas untuk Perairan yang Lebih Bersih
                 </h1>
-                
+                    
                 <!-- Subheading -->
                 <p class="text-indigo-100 text-sm md:text-base lg:text-lg max-w-2xl leading-relaxed mb-12">
                     P.L.E.C.O hadir sebagai solusi autonomous untuk memantau dan membersihkan sampah di perairan secara lebih cerdas.
