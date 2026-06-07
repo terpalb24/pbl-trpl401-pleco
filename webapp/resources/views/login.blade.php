@@ -12,7 +12,6 @@
 </head>
 <!-- Tampilan sementara -->
 <body class="flex flex-col min-h-screen bg-[url('http://localhost:8000/images/background.png')] bg-cover bg-center">
-    <x-navbar.index></x-navbar.index>
 
     <main class="flex flex-row min-h-screen justify-center items-center p-6">
         <form action="{{ route('login.store') }}" method="post">

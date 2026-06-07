@@ -11,7 +11,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 dark:bg-gray-900">
-    <x-navbar-admin></x-navbar-admin>
+    <x-navbar.loggedin></x-navbar.loggedin>
 
     <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
         <x-sidebar></x-sidebar>

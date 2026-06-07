@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>Teknologi Cerdas untuk Perairan yang Lebih Bersih - PLECO</title>
+    <title>Landing Page PLECO</title>
 
-    <meta name="description" content="P.L.E.C.O hadir sebagai solusi autonomous untuk memantau dan membersihkan sampah di perairan secara lebih cerdas.">
+    <meta name="description" content="PLECO hadir sebagai solusi autonomous untuk memantau dan membersihkan sampah di perairan secara lebih cerdas.">
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -19,24 +19,27 @@
         
         <!-- Hero Section -->
         <section id="home" class="relative">
-            <div class="bg-gradient-to-br from-blue-700 via-indigo-600 to-indigo-700 rounded-3xl pt-16 pb-12 px-6 md:px-12 text-center flex flex-col items-center shadow-xl">
+            <div class="bg-gradient-to-br from-blue-800 to-indigo-800 rounded-3xl pt-16 pb-16 md:pb-12 px-6 md:px-12 text-center flex flex-col items-center shadow-xl h-auto md:h-170">
                 <!-- Badge -->
-                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/20 text-white border border-white/10 mb-8 backdrop-blur-sm">
-                    P.L.E.C.O
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DDDBFF] text-[#736FB7] border border-white/10 backdrop-blur-sm mb-1">
+                    <img src="{{ asset('images/bot.png') }}" alt="Bot Icon" class="h-4 w-4">
+                    PLECO
                 </span>
                 
                 <!-- Heading -->
                 <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl leading-tight mb-6">
-                    Teknologi Cerdas untuk Perairan yang Lebih Bersih
+                    Teknologi Cerdas untuk <br class="hidden md:block">Perairan yang Lebih Bersih
                 </h1>
                     
                 <!-- Subheading -->
-                <p class="text-indigo-100 text-sm md:text-base lg:text-lg max-w-2xl leading-relaxed mb-12">
-                    P.L.E.C.O hadir sebagai solusi autonomous untuk memantau dan membersihkan sampah di perairan secara lebih cerdas.
+                <p class="text-white text-sm md:text-base lg:text-lg max-w-2xl leading-relaxed mb-6 md:mb-12">
+                    PLECO hadir sebagai solusi autonomous untuk membantu <br class="hidden md:block"> membersihkan sampah di perairan secara lebih cerdas.
                 </p>
                 
-                <!-- Video/Thumbnail -->
-                <div class="relative w-full max-w-4xl aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl group border-4 border-indigo-500/20">
+               
+            </div>
+             <!-- Video/Thumbnail -->
+                <div class="relative w-full max-w-6xl aspect-[16/9] rounded-[30px] overflow-hidden shadow-2xl group border-4 border-indigo-500/20 mx-auto -mt-20 md:-mt-80">
                     <img src="{{ asset('images/hero_video_thumbnail.png') }}" alt="Plastik terapung di perairan" class="w-full h-full object-cover">
                     <!-- Play Button Overlay -->
                     <div class="absolute inset-0 bg-black/10 flex items-center justify-center">
@@ -47,21 +50,20 @@
                         </button>
                     </div>
                 </div>
-            </div>
         </section>
 
         <!-- Benefit Section -->
         <section id="benefit" class="space-y-12 pt-6">
             <!-- Badge & Header -->
             <div class="space-y-4">
-                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider bg-indigo-50 text-indigo-600 border border-indigo-100">
-                    Tentang produk
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[14px] font-semibold tracking-wider bg-[#DDDBFF] text-[#736FB7] border border-indigo-100">
+                    Keuntungan produk
                 </span>
                 <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                     <h2 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight md:max-w-md">
                         Solusi untuk Perairan yang Lebih Bersih
                     </h2>
-                    <p class="text-gray-500 text-sm md:text-base leading-relaxed md:max-w-lg">
+                    <p class="text-black text-sm md:text-base leading-relaxed md:max-w-lg">
                         Dirancang untuk membantu mengurangi sampah kecil di perairan tenang, robot autonomous yang mampu bekerja secara otomatis dan real-time
                     </p>
                 </div>
@@ -70,63 +72,53 @@
             <!-- Features Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Feature 1 -->
-                <div class="bg-indigo-50/30 hover:bg-indigo-50/50 transition-colors rounded-2xl p-6 border border-indigo-100/50 flex flex-col justify-between h-full">
+                <div class="bg-indigo-50 hover:bg-indigo-50/50 transition-colors rounded-2xl p-6  flex flex-col justify-between h-full">
                     <div>
                         <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <polygon points="12 2 22 22 12 17 2 22 12 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <img src="{{ asset('images/navigation.png') }}" alt="Auto Icon" class="h-6 w-6">
                         </div>
                         <h3 class="text-lg font-bold text-gray-900 mb-3">Otomatisasi</h3>
-                        <p class="text-xs text-gray-500 leading-relaxed">
-                            P.L.E.C.O mampu bergerak secara otomatis untuk mendeteksi sampah tanpa memerlukan intervensi manusia secara manual.
+                        <p class="text-xs text-black leading-relaxed">
+                            PLECO membantu proses pengumpulan sampah perairan secara otomatis untuk mengurangi ketergantungan pada pembersihan manual.
                         </p>
                     </div>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="bg-indigo-50/30 hover:bg-indigo-50/50 transition-colors rounded-2xl p-6 border border-indigo-100/50 flex flex-col justify-between h-full">
+                <div class="bg-indigo-50 hover:bg-indigo-50/50 transition-colors rounded-2xl p-6  flex flex-col justify-between h-full">
                     <div>
                         <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <line x1="8" y1="21" x2="16" y2="21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <line x1="12" y1="17" x2="12" y2="21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <img src="{{ asset('images/square-activity.png') }}" alt="Auto Icon" class="h-6 w-6">
                         </div>
                         <h3 class="text-lg font-bold text-gray-900 mb-3">Monitoring</h3>
-                        <p class="text-xs text-gray-500 leading-relaxed">
-                            Pemantauan kondisi perairan dan status kerja robot dapat diakses secara real-time melalui web panel yang disediakan.
+                        <p class="text-xs text-black leading-relaxed">
+                            Sistem berbasis IoT memungkinkan kondisi robot dan aktivitas pembersihan dipantau secara real-time melalui website.
                         </p>
                     </div>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="bg-indigo-50/30 hover:bg-indigo-50/50 transition-colors rounded-2xl p-6 border border-indigo-100/50 flex flex-col justify-between h-full">
+                <div class="bg-indigo-50 hover:bg-indigo-50/50 transition-colors rounded-2xl p-6  flex flex-col justify-between h-full">
                     <div>
                         <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <img src="{{ asset('images/sparkles.png') }}" alt="Auto Icon" class="h-6 w-6">
                         </div>
                         <h3 class="text-lg font-bold text-gray-900 mb-3">Efisiensi</h3>
-                        <p class="text-xs text-gray-500 leading-relaxed">
-                            Mengurangi waktu dan biaya yang dibutuhkan untuk membersihkan perairan dibandingkan dengan metode tradisional.
+                        <p class="text-xs text-black leading-relaxed">
+                            Dirancang untuk membantu proses pembersihan perairan menjadi lebih cepat, modern, dan efisien di area perairan dangkal.
                         </p>
                     </div>
                 </div>
 
                 <!-- Feature 4 -->
-                <div class="bg-indigo-50/30 hover:bg-indigo-50/50 transition-colors rounded-2xl p-6 border border-indigo-100/50 flex flex-col justify-between h-full">
+                <div class="bg-indigo-50 hover:bg-indigo-50/50 transition-colors rounded-2xl p-6   flex flex-col justify-between h-full">
                     <div>
                         <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <img src="{{ asset('images/bubbles.png') }}" alt="Auto Icon" class="h-6 w-6">
                         </div>
                         <h3 class="text-lg font-bold text-gray-900 mb-3">Keberlanjutan</h3>
-                        <p class="text-xs text-gray-500 leading-relaxed">
-                            P.L.E.C.O dirancang untuk mendukung upaya pelestarian lingkungan perairan dan menciptakan masa depan yang lebih hijau.
+                        <p class="text-xs text-black leading-relaxed">
+                           PLECO mendukung terciptanya lingkungan perairan yang lebih bersih dan berkelanjutan melalui teknologi ramah lingkungan.  
                         </p>
                     </div>
                 </div>
@@ -136,23 +128,23 @@
         <!-- About/Mission Section -->
         <section id="tentang" class="space-y-8 pt-6">
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
-                P.L.E.C.O dan Misi di Baliknya
+                PLECO dan Misi di Baliknya
             </h2>
             
             <!-- Logo Card -->
-            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-3xl h-64 md:h-80 flex items-center justify-center shadow-lg relative overflow-hidden">
-                <img src="{{ asset('images/logo_text.png') }}" class="h-16 md:h-24 brightness-0 invert object-contain" alt="PLECO Logo">
+            <div>
+                <img src="{{ asset('images/Background_Pleco.jpeg') }}" class="w-full h-[300px] md:h-[600px] object-cover rounded-3xl shadow-lg" alt="PLECO Logo">
             </div>
 
             <!-- About Description -->
-            <div class="flex flex-col md:flex-row gap-6 items-start pt-4">
-                <div class="flex-shrink-0">
-                    <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider bg-indigo-50 text-indigo-600 border border-indigo-100">
-                        Tentang P.L.E.C.O
+            <div class="flex flex-col md:flex-row gap-6 pt-4">
+                <div class="flex-shrink-0 ">
+                    <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[14px] font-semibold tracking-wider bg-[#DDDBFF] text-[#736FB7] border border-indigo-100">
+                        Tentang PLECO
                     </span>
                 </div>
-                <p class="text-gray-600 text-sm md:text-base leading-relaxed md:max-w-4xl">
-                    P.L.E.C.O adalah autonomous ocean trash collector berbasis IoT yang dirancang untuk membantu menjaga kebersihan daerah perairan tenang secara lebih modern dan efisien. Dibangun dengan teknologi navigasi otomatis, object detection, dan monitoring real-time, P.L.E.C.O mampu mendeteksi serta mengumpulkan sampah terapung secara mandiri. Lebih dari sekadar robot pembersih, P.L.E.C.O hadir sebagai langkah menuju lingkungan perairan yang lebih bersih, cerdas, dan berkelanjutan.
+                <p class="text-black text-sm md:text-[20px]  md:max-w-4xl  md:ml-auto">
+                    PLECO adalah autonomous ocean trash collector berbasis IoT yang dirancang untuk membantu menjaga kebersihan daerah perairan tenang secara lebih modern dan efisien. Dibangun dengan teknologi navigasi otomatis, object detection, dan monitoring real-time, PLECO mampu mendeteksi serta mengumpulkan sampah terapung secara mandiri. Lebih dari sekadar robot pembersih, PLECO hadir sebagai langkah menuju lingkungan perairan yang lebih bersih, cerdas, dan berkelanjutan.
                 </p>
             </div>
         </section>
@@ -161,26 +153,26 @@
         <section id="tim" class="space-y-12 pt-6">
             <!-- Badge & Header -->
             <div class="space-y-4">
-                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider bg-indigo-50 text-indigo-600 border border-indigo-100">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[14px] font-semibold tracking-wider bg-[#DDDBFF] text-[#736FB7] border border-indigo-100">
                     Tim Kami
                 </span>
                 <div class="flex justify-between items-end">
                     <div class="space-y-2">
                         <h2 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
-                            Temui Tim Pengembang P.L.E.C.O
+                            Temui Tim Pengembang PLECO
                         </h2>
-                        <p class="text-gray-500 text-sm md:text-base leading-relaxed max-w-xl">
-                            Sekelompok mahasiswa yang menggabungkan teknologi, inovasi, dan kepedulian lingkungan dalam pengembangan P.L.E.C.O.
+                        <p class="text-black text-sm md:text-base leading-relaxed max-w-xl">
+                            Sekelompok mahasiswa yang menggabungkan teknologi, inovasi, dan kepedulian lingkungan dalam pengembangan PLECO.
                         </p>
                     </div>
                     <!-- Slider Arrows -->
                     <div class="flex space-x-3">
-                        <button class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow transition-colors cursor-pointer" aria-label="Previous">
+                        <button id="team-prev" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow transition-colors cursor-pointer" aria-label="Previous">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                             </svg>
                         </button>
-                        <button class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow transition-colors cursor-pointer" aria-label="Next">
+                        <button id="team-next" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow transition-colors cursor-pointer" aria-label="Next">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
@@ -189,50 +181,86 @@
                 </div>
             </div>
 
-            <!-- Team Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Member 1 -->
-                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
-                    <div class="h-96 w-full overflow-hidden bg-gray-100">
-                        <img src="{{ asset('images/juan.png') }}" alt="Juan Immanuel Tinambuan" class="w-full h-full object-cover">
+            <!-- Team Slider Outer Container -->
+            <div class="relative overflow-hidden w-full px-1 py-4">
+                <div id="team-slider" class="flex gap-8 transition-transform duration-500 ease-out">
+                    <!-- Member 1 -->
+                    <div class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
+                        <div class="h-96 w-full overflow-hidden bg-gray-100">
+                            <img src="{{ asset('images/juan.png') }}" alt="Juan Immanuel Tinambuan" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-900">Juan Immanuel Tinambuan</h3>
+                            <p class="text-xs text-gray-400 mt-1 font-medium">Project Manager & Hardware Engineer</p>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900">Juan Immanuel Tinambuan</h3>
-                        <p class="text-xs text-gray-400 mt-1 font-medium">Project Manager & Hardware Engineer</p>
-                    </div>
-                </div>
 
-                <!-- Member 2 -->
-                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
-                    <div class="h-96 w-full overflow-hidden bg-gray-100">
-                        <img src="{{ asset('images/wasyn.png') }}" alt="Wasyn Sulaiman Siregar" class="w-full h-full object-cover">
+                    <!-- Member 2 -->
+                    <div class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
+                        <div class="h-96 w-full overflow-hidden bg-gray-100">
+                            <img src="{{ asset('images/wasyn.png') }}" alt="Wasyn Sulaiman Siregar" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-900">Wasyn Sulaiman Siregar</h3>
+                            <p class="text-xs text-gray-400 mt-1 font-medium">System Architect & Hardware Engineer</p>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900">Wasyn Sulaiman Siregar</h3>
-                        <p class="text-xs text-gray-400 mt-1 font-medium">System Architect & Hardware Engineer</p>
-                    </div>
-                </div>
 
-                <!-- Member 3 -->
-                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
-                    <div class="h-96 w-full overflow-hidden bg-gray-100">
-                        <img src="{{ asset('images/aidil.png') }}" alt="Muhammad Aidil Jupriadi Saleh" class="w-full h-full object-cover">
+                    <!-- Member 3 -->
+                    <div class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
+                        <div class="h-96 w-full overflow-hidden bg-gray-100">
+                            <img src="{{ asset('images/aidil.png') }}" alt="Muhammad Aidil Jupriadi Saleh" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-900">Muhammad Aidil Jupriadi Saleh</h3>
+                            <p class="text-xs text-gray-400 mt-1 font-medium">UI/UX Designer & Hardware Engineer</p>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900">Muhammad Aidil Jupriadi Saleh</h3>
-                        <p class="text-xs text-gray-400 mt-1 font-medium">UI/UX Designer & Hardware Engineer</p>
+
+                    <!-- Member 4 -->
+                    <div class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
+                        <div class="h-96 w-full overflow-hidden bg-gray-100">
+                            <img src="{{ asset('images/farhan.png') }}" alt="Farhan Maulana" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-900">Farhan Maulana</h3>
+                            <p class="text-xs text-gray-400 mt-1 font-medium">Software Engineer</p>
+                        </div>
+                    </div>
+
+                    <!-- Member 5 -->
+                    <div class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
+                        <div class="h-96 w-full overflow-hidden bg-gray-100">
+                            <img src="{{ asset('images/siti.png') }}" alt="Siti Rahma" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-900">Siti Rahma</h3>
+                            <p class="text-xs text-gray-400 mt-1 font-medium">UI/UX Designer</p>
+                        </div>
+                    </div>
+
+                    <!-- Member 6 -->
+                    <div class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
+                        <div class="h-96 w-full overflow-hidden bg-gray-100">
+                            <img src="{{ asset('images/dodi.png') }}" alt="Dodi Hermawan" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-900">Dodi Hermawan</h3>
+                            <p class="text-xs text-gray-400 mt-1 font-medium">Embedded Systems Engineer</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            
         </section>
 
         <!-- Footer Card -->
-        <footer class="bg-gradient-to-br from-blue-700 via-indigo-600 to-indigo-700 rounded-3xl py-12 px-6 md:px-12 text-white shadow-xl">
+        <footer class="bg-gradient-to-br from-blue-800 to-indigo-800 rounded-3xl py-12 px-6 md:px-12 text-white shadow-xl">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
                 <!-- Left Details -->
                 <div class="space-y-4 max-w-md">
                     <img src="{{ asset('images/logo_text.png') }}" class="h-8 brightness-0 invert object-contain" alt="PLECO Logo">
-                    <p class="text-indigo-100 text-xs md:text-sm leading-relaxed">
+                    <p class="text-white text-xs md:text-sm leading-relaxed">
                         Mengintegrasikan teknologi autonomous dan IoT untuk menciptakan solusi pembersihan sampah di perairan yang cerdas, efisien, dan berkelanjutan.
                     </p>
                 </div>
@@ -268,11 +296,79 @@
             <hr class="border-white/10 my-8">
             
             <div class="flex justify-between items-center text-xs text-indigo-200">
-                <p>© 2024 P.L.E.C.O. Semua hak cipta dilindungi.</p>
+                <p>© 2026 PLECO Seluruh hak cipta dilindungi.</p>
             </div>
         </footer>
 
+        <!-- Bottom Responsive Spacer -->
+        <div class="h-8 md:hidden !mt-0"></div>
+
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.getElementById('team-slider');
+            const prevBtn = document.getElementById('team-prev');
+            const nextBtn = document.getElementById('team-next');
+            
+            if (!slider || !prevBtn || !nextBtn) return;
+            
+            let currentIndex = 0;
+            
+            function getVisibleCardsCount() {
+                return window.innerWidth >= 768 ? 3 : 1;
+            }
+            
+            function getCardWidth() {
+                const cards = slider.children;
+                if (cards.length === 0) return 0;
+                return cards[0].offsetWidth;
+            }
+            
+            function updateSlider() {
+                const visibleCards = getVisibleCardsCount();
+                const cards = slider.children;
+                const maxIndex = cards.length - visibleCards;
+                
+                if (currentIndex < 0) currentIndex = 0;
+                if (currentIndex > maxIndex) currentIndex = maxIndex;
+                
+                const cardWidth = getCardWidth();
+                const gap = 32;
+                const offset = currentIndex * (cardWidth + gap);
+                
+                slider.style.transform = `translateX(-${offset}px)`;
+                
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex === maxIndex;
+                
+                prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                prevBtn.style.cursor = currentIndex === 0 ? 'not-allowed' : 'pointer';
+                nextBtn.style.opacity = currentIndex === maxIndex ? '0.5' : '1';
+                nextBtn.style.cursor = currentIndex === maxIndex ? 'not-allowed' : 'pointer';
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                const visibleCards = getVisibleCardsCount();
+                const maxIndex = slider.children.length - visibleCards;
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            });
+            
+            window.addEventListener('resize', () => {
+                updateSlider();
+            });
+            
+            setTimeout(updateSlider, 150);
+        });
+    </script>
 </body>
 </html>
-

@@ -4,13 +4,13 @@
             <!-- Left: Logo -->
             <div class="flex-shrink-0">
                 <a href="{{ route('index') }}" class="flex items-center">
-                    <img src="{{ asset('images/logo_text.png') }}" alt="Logo PLECO" class="h-8">
+                    <img src="{{ asset('images/logo_text.png') }}" alt="Logo PLECO" class="h-8 brightness-0">
                 </a>
             </div>
 
             <!-- Right: Navigation Links & CTA -->
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Home</a>
+                <a href="#home" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Beranda</a>
                 <a href="#benefit" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Benefit</a>
                 <a href="#tentang" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Tentang</a>
                 <a href="#tim" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Tim</a>
