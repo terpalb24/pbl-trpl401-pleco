@@ -1,10 +1,11 @@
 import config from '../config.json' with { type: 'json' };
-import { printError } from './util.js';
+import { printError, parseKey } from './util.js';
 const STATUS_CODES = {
 	OK: 200,
 	INVALID_BODY: 422,
 	INVALID_TRASH_TYPE: 406
 }
+const PAYLOAD_PREFIXES = ['GPSLOCAT', 'ADDTRASH'];
 
 
 
@@ -20,6 +21,7 @@ export default async function(ws, req, db) {
 	console.log(`Robot ${robotId} connected.`);
 	ws.send(STATUS_CODES.OK);
 
+	// Memproses semua pesan yang diterima dari robot.
 	ws.on('message', (msg) => receiveMessage(ws, db, robotId, msg));
 
 	ws.on('error', errorEvent);
@@ -27,13 +29,6 @@ export default async function(ws, req, db) {
 	ws.on('close', () => {
 		console.log(`Robot ${robotId} disconnected`);
 	});
-}
-
-
-
-function parseKey(reqUrl) {
-	const params = new URLSearchParams(reqUrl.split('?')[1] || '');
-	return params.get('key');
 }
 
 async function fetchRobotData(db, key) {
@@ -54,7 +49,30 @@ async function receiveMessage(ws, db, robotId, msg) {
 	const strMsg = msg.toString();
 	if (!strMsg.length) return ws.close(1003, 'Missing content');
 
-	const splitted = strMsg.trim().split(',');
+	// Payload yang valid: PREFIX|data,dan,seterusnya
+	const splittedPayload = strMsg.trim().split('|');
+	if (splittedPayload.length !== 2) return ws.send(STATUS_CODES.INVALID_BODY);
+
+	// GPSLOCAT -- Prefix untuk menerima lokasi GPS robot
+	// ADDTRASH -- Prefix untuk menerima data sampah
+	const prefix = splittedPayload[0];
+	if (prefix.length !== 8) return ws.send(STATUS_CODES.INVALID_BODY);
+
+	const data = splittedPayload[1].trim();
+	// Data terlalu pendek
+	if (data.length < 5) return ws.send(STATUS_CODES.INVALID_BODY);
+
+	if (prefix === 'GPSLOCAT') {
+		return processGPSData(ws, db, robotId, data);
+	} else if (prefix === 'ADDTRASH') {
+		return processTrashData(ws, db, robotId, data);
+	} else {
+		return ws.send(STATUS_CODES.INVALID_BODY);
+	}
+}
+
+async function processTrashData(ws, db, robotId, data) {
+	const splitted = data.trim().split(',');
 	if (!splitted.length || splitted.length !== 2) return ws.send(STATUS_CODES.INVALID_BODY);
 
 	const trashType = splitted[0],
@@ -65,9 +83,9 @@ async function receiveMessage(ws, db, robotId, msg) {
 
 	const insertSuccess = await insertTrashData(db, robotId, trashType, amount);
 	if (insertSuccess) {
-		ws.send(STATUS_CODES.OK);
+		return ws.send(STATUS_CODES.OK);
 	} else {
-		ws.send(STATUS_CODES.INVALID_TRASH_TYPE);
+		return ws.send(STATUS_CODES.INVALID_TRASH_TYPE);
 	}
 }
 
@@ -77,6 +95,29 @@ async function insertTrashData(db, robotId, trashType, amount) {
 	try {
 		conn = await db.getConn();
 		return await db.trashCounter.updateAndSuccess(conn, robotId, trashType, amount);
+	} catch(err) {
+		printError(err.message);
+		return false;
+	} finally {
+		if (conn) conn.release();
+	}
+}
+
+async function processGPSData(ws, db, robotId, data) {
+	const insertSuccess = await insertGPSData(db, robotId, data);
+	if (insertSuccess) {
+		return ws.send(STATUS_CODES.OK);
+	} else {
+		return ws.send(STATUS_CODES.INVALID_TRASH_TYPE);
+	}
+}
+
+async function insertGPSData(db, robotId, coords) {
+	let conn;
+
+	try {
+		conn = await db.getConn();
+		return await db.robot.updateAndSuccess(conn, robotId, coords);
 	} catch(err) {
 		printError(err.message);
 		return false;
