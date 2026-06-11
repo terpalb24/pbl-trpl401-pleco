@@ -9,13 +9,6 @@
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
-        .bg-wave-pattern {
-            background-color: #f8fafc;
-            background-image: radial-gradient(at 0% 0%, hsla(215,98%,61%,0.08) 0px, transparent 50%),
-                              radial-gradient(at 100% 100%, hsla(199,89%,48%,0.08) 0px, transparent 50%);
-        }
-    </style>
 </head>
 <body class="bg-white">
     <x-navbar.loggedin></x-navbar.loggedin>
@@ -25,7 +18,7 @@
 
         <div id="main-content" class="relative w-full h-[calc(100vh-4rem)] overflow-hidden lg:ml-64 bg-slate-50/50">
             <main class="p-8 h-full">
-                
+
                 <div class="mb-8">
                     <h2 class="font-bold text-slate-800 text-2xl tracking-tight">Pengaturan Akun</h2>
                     <p class="text-slate-500 text-sm mt-1">Perbarui detail profil dan kata sandi Anda di sini.</p>
@@ -84,7 +77,12 @@
                         </div>
 
                         <div>
-                            <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5 text-center shadow-sm transition-all hover:shadow-md h-[42px]">Simpan Perubahan</button>
+                            <button
+                                type="submit"
+                                class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4
+                                focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5
+                                text-center shadow-sm transition-all hover:shadow-md h-[42px] cursor-pointer"
+                            >Simpan Perubahan</button>
                         </div>
                     </form>
 
