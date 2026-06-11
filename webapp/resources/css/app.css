@@ -7,6 +7,7 @@
 @source '../**/*.js';
 @source '../../node_modules/flowbite';
 
+
 @theme {
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
@@ -25,6 +26,14 @@
     --color-indigo-600: #2F27CE;
     --color-indigo-700: #1c159e;
     --color-indigo-800: #443DFF;
+}
+
+@utility bg-pleco-gradient {
+    background-image: linear-gradient(187deg, #F2EFFF 35%, #E2E6FF 87%);
+}
+
+@utility figma-black {
+    color: #414141;
 }
 
 @plugin "daisyui" {
