@@ -11,7 +11,7 @@ class AccountController extends Controller
 {
     public function index()
     {
-        return view('account.settings', [
+        return view('account', [
             'user' => auth()->user()
         ]);
     }
@@ -35,11 +35,11 @@ class AccountController extends Controller
 
         $user->save();
 
-        return redirect()->route('account.settings')->with('status', 'account-updated');
+        return redirect()->route('account.index')->with('status', 'account-updated');
     }
 
     // Admin user management actions
-    public function adminIndex(Request $request)
+    public function adminIndex()
     {
         if (auth()->user()->role !== 'ADMIN') {
             abort(403, 'Unauthorized action.');

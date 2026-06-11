@@ -21,8 +21,8 @@ Route::post('/login', [LoginController::class, 'store'])
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
-    Route::get('/account', [AccountController::class, 'index'])->name('account.settings');
+
+    Route::get('/account', [AccountController::class, 'index'])->name('account.index');
     Route::put('/account', [AccountController::class, 'update'])->name('account.update');
 
     // Admin user management routes

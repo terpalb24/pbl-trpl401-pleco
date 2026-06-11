@@ -16,7 +16,7 @@
     <x-navbar.index></x-navbar.index>
 
     <main class="max-w-7xl mx-auto px-6 lg:px-8 py-10 space-y-24">
-        
+
         <!-- Hero Section -->
         <section id="home" class="relative">
             <div class="bg-gradient-to-br from-blue-800 to-indigo-800 rounded-3xl pt-16 pb-16 md:pb-12 px-6 md:px-12 text-center flex flex-col items-center shadow-xl h-auto md:h-170">
@@ -25,18 +25,18 @@
                     <img src="{{ asset('images/bot.png') }}" alt="Bot Icon" class="h-4 w-4">
                     PLECO
                 </span>
-                
+
                 <!-- Heading -->
                 <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl leading-tight mb-6">
                     Teknologi Cerdas untuk <br class="hidden md:block">Perairan yang Lebih Bersih
                 </h1>
-                    
+
                 <!-- Subheading -->
                 <p class="text-white text-sm md:text-base lg:text-lg max-w-2xl leading-relaxed mb-6 md:mb-12">
                     PLECO hadir sebagai solusi autonomous untuk membantu <br class="hidden md:block"> membersihkan sampah di perairan secara lebih cerdas.
                 </p>
-                
-               
+
+
             </div>
              <!-- Video/Thumbnail -->
                 <div class="relative w-full max-w-6xl aspect-[16/9] rounded-[30px] overflow-hidden shadow-2xl group border-4 border-indigo-500/20 mx-auto -mt-20 md:-mt-80">
@@ -118,7 +118,7 @@
                         </div>
                         <h3 class="text-lg font-bold text-gray-900 mb-3">Keberlanjutan</h3>
                         <p class="text-xs text-black leading-relaxed">
-                           PLECO mendukung terciptanya lingkungan perairan yang lebih bersih dan berkelanjutan melalui teknologi ramah lingkungan.  
+                           PLECO mendukung terciptanya lingkungan perairan yang lebih bersih dan berkelanjutan melalui teknologi ramah lingkungan.
                         </p>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
                 PLECO dan Misi di Baliknya
             </h2>
-            
+
             <!-- Logo Card -->
             <div>
                 <img src="{{ asset('images/Background_Pleco.jpeg') }}" class="w-full h-[300px] md:h-[600px] object-cover rounded-3xl shadow-lg" alt="PLECO Logo">
@@ -251,7 +251,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </section>
 
         <!-- Footer Card -->
@@ -292,9 +292,9 @@
                     </a>
                 </div>
             </div>
-            
+
             <hr class="border-white/10 my-8">
-            
+
             <div class="flex justify-between items-center text-xs text-indigo-200">
                 <p>© 2026 PLECO Seluruh hak cipta dilindungi.</p>
             </div>
@@ -309,51 +309,51 @@
             const slider = document.getElementById('team-slider');
             const prevBtn = document.getElementById('team-prev');
             const nextBtn = document.getElementById('team-next');
-            
+
             if (!slider || !prevBtn || !nextBtn) return;
-            
+
             let currentIndex = 0;
-            
+
             function getVisibleCardsCount() {
                 return window.innerWidth >= 768 ? 3 : 1;
             }
-            
+
             function getCardWidth() {
                 const cards = slider.children;
                 if (cards.length === 0) return 0;
                 return cards[0].offsetWidth;
             }
-            
+
             function updateSlider() {
                 const visibleCards = getVisibleCardsCount();
                 const cards = slider.children;
                 const maxIndex = cards.length - visibleCards;
-                
+
                 if (currentIndex < 0) currentIndex = 0;
                 if (currentIndex > maxIndex) currentIndex = maxIndex;
-                
+
                 const cardWidth = getCardWidth();
                 const gap = 32;
                 const offset = currentIndex * (cardWidth + gap);
-                
+
                 slider.style.transform = `translateX(-${offset}px)`;
-                
+
                 prevBtn.disabled = currentIndex === 0;
                 nextBtn.disabled = currentIndex === maxIndex;
-                
+
                 prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
                 prevBtn.style.cursor = currentIndex === 0 ? 'not-allowed' : 'pointer';
                 nextBtn.style.opacity = currentIndex === maxIndex ? '0.5' : '1';
                 nextBtn.style.cursor = currentIndex === maxIndex ? 'not-allowed' : 'pointer';
             }
-            
+
             prevBtn.addEventListener('click', () => {
                 if (currentIndex > 0) {
                     currentIndex--;
                     updateSlider();
                 }
             });
-            
+
             nextBtn.addEventListener('click', () => {
                 const visibleCards = getVisibleCardsCount();
                 const maxIndex = slider.children.length - visibleCards;
@@ -362,11 +362,11 @@
                     updateSlider();
                 }
             });
-            
+
             window.addEventListener('resize', () => {
                 updateSlider();
             });
-            
+
             setTimeout(updateSlider, 150);
         });
     </script>
