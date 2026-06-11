@@ -18,7 +18,7 @@
     </style>
 </head>
 <body class="bg-white">
-    <x-navbar-operator></x-navbar-operator>
+    <x-navbar.loggedin></x-navbar.loggedin>
 
     <div class="flex pt-16 overflow-hidden bg-white">
         <x-sidebar-operator></x-sidebar-operator>
