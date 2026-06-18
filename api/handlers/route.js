@@ -1,20 +1,20 @@
 import config from '../config.json' with { type: 'json' };
 import { printError, parseKey } from './util.js';
-const STATUS_CODES = {
-	OK: 200,
-	INVALID_BODY: 422,
-	INVALID_TRASH_TYPE: 406
-}
-const PAYLOAD_PREFIXES = ['GPSLOCAT', 'ADDTRASH'];
+const STATUS_CODES = config.status_codes;
+const PAYLOAD_PREFIXES = config.payload_prefixes;
 
 
 
 export default async function(ws, req, db) {
-	const key = parseKey(req.url);
-	if (!key) return ws.close(1007, 'Robot key is not valid');
+	if (!ws.protocol) return ws.close(1008, 'Missing protocol');
+
+	if (req.url !== '/') return ws.close(1008, 'Invalid request path');
+
+	const key = ws.protocol;
+	if (!key) return ws.close(1007, 'Invalid key');
 
 	const robot = await fetchRobotData(db, key);
-	if (!robot) return ws.close(1007, 'Robot key is not valid');
+	if (!robot) return ws.close(1007, 'Invalid key');
 
 	const robotId = robot.robot_id;
 
