@@ -1,10 +1,10 @@
 <nav class="sticky top-0 z-50 bg-white border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
             <!-- Left: Logo -->
-            <div class="flex-shrink-0">
+            <div class="shrink-0">
                 <a href="{{ route('index') }}" class="flex items-center">
-                    <img src="{{ asset('images/logo_text.png') }}" alt="Logo PLECO" class="h-8 brightness-0">
+                    <img src="{{ asset('images/logo_text.png') }}" alt="Logo PLECO" class="h-6 brightness-0">
                 </a>
             </div>
 
