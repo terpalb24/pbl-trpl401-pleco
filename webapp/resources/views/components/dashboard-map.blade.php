@@ -5,11 +5,12 @@
             <h3 class="font-bold text-slate-800 text-xl tracking-tight">Lokasi Robot</h3>
             <p class="text-slate-500 text-sm mt-1">Pantau pergerakan robot.</p>
         </div>
-        
+
         <!-- Status Badge -->
         <div class="flex items-center space-x-2">
             <span class="relative flex h-3 w-3">
-                <span id="ping-indicator" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                <span id="ping-indicator"
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
                 <span id="status-indicator" class="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
             </span>
             <span id="status-text" class="text-sm font-semibold text-slate-600">Menghubungkan...</span>
@@ -18,7 +19,7 @@
 
     <!-- Peta Leaflet (Full Width) -->
     <div class="relative z-10 mb-6">
-        <div id="robot-map" class="h-[420px] w-full rounded-2xl border border-slate-200 shadow-sm z-0"></div>
+        <div id="robot-map" class="h-[500px] w-full border border-slate-200 shadow-sm z-0"></div>
     </div>
 
     <!-- Parameter Cards (Horizontal Grid) -->
@@ -29,20 +30,27 @@
             <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100/80">
                 <div class="p-1.5 bg-blue-50 text-blue-600 rounded-lg shrink-0">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
                 </div>
                 <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Koordinat Terkini</span>
             </div>
             <!-- Content: Coordinates Grid -->
             <div class="grid grid-cols-2 gap-3 pt-0.5">
-                <div class="text-xs font-mono bg-white px-3 py-2.5 rounded-xl border border-slate-200/60 flex flex-col shadow-3xs">
-                    <span class="text-slate-400 font-sans text-[10px] uppercase font-bold tracking-wider mb-1">Garis Lintang</span>
+                <div
+                    class="text-xs font-mono bg-white px-3 py-2.5 rounded-xl border border-slate-200/60 flex flex-col shadow-3xs">
+                    <span class="text-slate-400 font-sans text-[10px] uppercase font-bold tracking-wider mb-1">Garis
+                        Lintang</span>
                     <span id="param-lat" class="font-semibold text-slate-800 text-sm">-</span>
                 </div>
-                <div class="text-xs font-mono bg-white px-3 py-2.5 rounded-xl border border-slate-200/60 flex flex-col shadow-3xs">
-                    <span class="text-slate-400 font-sans text-[10px] uppercase font-bold tracking-wider mb-1">Garis Bujur</span>
+                <div
+                    class="text-xs font-mono bg-white px-3 py-2.5 rounded-xl border border-slate-200/60 flex flex-col shadow-3xs">
+                    <span class="text-slate-400 font-sans text-[10px] uppercase font-bold tracking-wider mb-1">Garis
+                        Bujur</span>
                     <span id="param-lng" class="font-semibold text-slate-800 text-sm">-</span>
                 </div>
             </div>
@@ -55,21 +63,26 @@
                 <div class="flex items-center gap-2.5">
                     <div class="p-1.5 bg-emerald-50 text-emerald-600 rounded-lg shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+                            </path>
                         </svg>
                     </div>
                     <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Daya Baterai</span>
                 </div>
             </div>
             <!-- Content: Unified Battery Card -->
-            <div class="bg-white px-3 py-2.5 rounded-xl border border-slate-200/60 shadow-3xs flex items-center justify-between min-h-[58px]">
+            <div
+                class="bg-white px-3 py-2.5 rounded-xl border border-slate-200/60 shadow-3xs flex items-center justify-between min-h-[58px]">
                 <div class="flex flex-col shrink-0">
-                    <span class="text-slate-400 font-sans text-[10px] uppercase font-bold tracking-wider mb-1">Status Kapasitas</span>
+                    <span class="text-slate-400 font-sans text-[10px] uppercase font-bold tracking-wider mb-1">Status
+                        Kapasitas</span>
                     <span id="param-battery-text" class="font-semibold text-slate-800 text-sm">0%</span>
                 </div>
                 <div class="flex-1 max-w-[160px] ml-4">
                     <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden p-0.5">
-                        <div id="param-battery-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        <div id="param-battery-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-500"
+                            style="width: 0%"></div>
                     </div>
                 </div>
             </div>
@@ -78,12 +91,12 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         // --- 1. Inisialisasi Leaflet Map ---
         // Lokasi awal (Danau Batam Center)
         const defaultLat = 1.1278;
         const defaultLng = 104.0532;
-        
+
         const map = L.map('robot-map', {
             zoomControl: true,
             scrollWheelZoom: true
@@ -129,7 +142,7 @@
         const uiStatusIndicator = document.getElementById('status-indicator');
         const uiPingIndicator = document.getElementById('ping-indicator');
         const uiStatusText = document.getElementById('status-text');
-        
+
         const uiParamStatus = document.getElementById('param-status');
         const uiParamSignal = document.getElementById('param-signal');
         const uiParamSpeed = document.getElementById('param-speed');
@@ -138,7 +151,7 @@
         const uiParamLng = document.getElementById('param-lng');
         const uiParamBatteryText = document.getElementById('param-battery-text');
         const uiParamBatteryBar = document.getElementById('param-battery-bar');
-        
+
         const markerPing = document.getElementById('marker-ping');
         const markerDirection = document.getElementById('marker-direction');
 
@@ -184,6 +197,7 @@
             if (pathPoints.length > 100) {
                 pathPoints.shift();
                 robotPath.setLatLngs(pathPoints);
+                // robotPath.setLatLngs(robotPathPoints);
             }
 
             // Atur Rotasi Arah Marker (Heading)
@@ -238,21 +252,21 @@
                 pingEl.classList.add('bg-yellow-400');
             }
 
-            simulationInterval = setInterval(function() {
+            simulationInterval = setInterval(function () {
                 const currentCoord = simPath[simRouteIndex];
                 const nextRouteIndex = (simRouteIndex + 1) % simPath.length;
                 const nextCoord = simPath[nextRouteIndex];
 
                 // Hitung arah (heading) antara dua titik koordinat
-                const dy = nextCoord[0] - currentCoord[0];
-                const dx = Math.cos(Math.PI/180 * currentCoord[0]) * (nextCoord[1] - currentCoord[1]);
+                const dy = (nextCoord[0] - currentCoord[0]);
+                const dx = Math.cos(Math.PI / 180 * currentCoord[0]) * (nextCoord[1] - currentCoord[1]);
                 let heading = Math.atan2(dx, dy) * 180 / Math.PI;
                 if (heading < 0) heading += 360;
 
                 // Tambahkan sedikit noise/variasi acak agar gerakan robot natural
                 const noiseLat = (Math.random() - 0.5) * 0.0001;
                 const noiseLng = (Math.random() - 0.5) * 0.0001;
-                
+
                 const finalLat = currentCoord[0] + noiseLat;
                 const finalLng = currentCoord[1] + noiseLng;
 
@@ -288,7 +302,7 @@
         // --- 4. Logika WebSocket Client Real-time ---
         let socket = null;
         let reconnectTimeout = null;
-        
+
         // Silakan sesuaikan URL WebSocket di bawah ini sesuai server WebSocket robot Anda
         const wsUrl = 'ws://127.0.0.1:8080/robot-gps';
 
@@ -304,15 +318,15 @@
             uiStatusIndicator.className = "relative inline-flex rounded-full h-3 w-3 bg-red-500";
             uiPingIndicator.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75";
             uiStatusText.innerText = "Menghubungkan...";
-            uiStatusText.className = "text-sm font-semibold text-slate-500";
+            uiStatusText.className = "text-sm font-semibold text-red-500";
 
             try {
                 socket = new WebSocket(wsUrl);
 
-                socket.onopen = function() {
+                socket.onopen = function () {
                     console.log("[WebSocket] Terhubung dengan sukses!");
                     stopSimulation(); // Hentikan simulasi saat berhasil terhubung
-                    
+
                     // Ubah status ke Terhubung (Live)
                     uiStatusIndicator.className = "relative inline-flex rounded-full h-3 w-3 bg-green-500";
                     uiPingIndicator.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75";
@@ -332,7 +346,7 @@
                     }
                 };
 
-                socket.onmessage = function(event) {
+                socket.onmessage = function (event) {
                     try {
                         const data = JSON.parse(event.data);
                         updateRobotUI(data);
@@ -341,14 +355,14 @@
                     }
                 };
 
-                socket.onerror = function(err) {
+                socket.onerror = function (err) {
                     console.error("[WebSocket] Terjadi error pada koneksi.");
                 };
 
-                socket.onclose = function() {
+                socket.onclose = function () {
                     console.warn("[WebSocket] Koneksi terputus. Mengaktifkan mode simulasi dan mencoba menghubungkan ulang dalam 5 detik...");
                     startSimulation();
-                    
+
                     // Coba hubungkan kembali setelah 5 detik secara otomatis
                     reconnectTimeout = setTimeout(connectWebSocket, 5000);
                 };

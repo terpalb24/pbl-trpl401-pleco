@@ -229,12 +229,12 @@
                         <div
                             class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
                             <div class="h-96 w-full overflow-hidden bg-gray-100">
-                                <img src="{{ asset('images/juan.png') }}" alt="Juan Immanuel Tinambuan"
+                                <img src="{{ asset('images/juan.jpg') }}" alt="Juan Immanuel Tinambuan"
                                     class="w-full h-full object-cover">
                             </div>
                             <div class="p-6">
                                 <h3 class="text-lg font-bold text-gray-900">Juan Immanuel Tinambuan</h3>
-                                <p class="text-xs text-gray-400 mt-1 font-medium">Project Manager & Hardware Engineer
+                                <p class="text-base text-gray-400 mt-1 font-medium">Project Manager & Hardware Engineer
                                 </p>
                             </div>
                         </div>
@@ -243,12 +243,12 @@
                         <div
                             class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
                             <div class="h-96 w-full overflow-hidden bg-gray-100">
-                                <img src="{{ asset('images/wasyn.png') }}" alt="Wasyn Sulaiman Siregar"
+                                <img src="{{ asset('images/wasyn.jpeg') }}" alt="Wasyn Sulaiman Siregar"
                                     class="w-full h-full object-cover">
                             </div>
                             <div class="p-6">
                                 <h3 class="text-lg font-bold text-gray-900">Wasyn Sulaiman Siregar</h3>
-                                <p class="text-xs text-gray-400 mt-1 font-medium">System Architect & Hardware Engineer
+                                <p class="text-base text-gray-400 mt-1 font-medium">UI/UX Designer & Hardware Engineer
                                 </p>
                             </div>
                         </div>
@@ -257,12 +257,12 @@
                         <div
                             class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
                             <div class="h-96 w-full overflow-hidden bg-gray-100">
-                                <img src="{{ asset('images/aidil.png') }}" alt="Muhammad Aidil Jupriadi Saleh"
+                                <img src="{{ asset('images/sheila.jpg') }}" alt="Sheila Rifqi"
                                     class="w-full h-full object-cover">
                             </div>
                             <div class="p-6">
-                                <h3 class="text-lg font-bold text-gray-900">Muhammad Aidil Jupriadi Saleh</h3>
-                                <p class="text-xs text-gray-400 mt-1 font-medium">UI/UX Designer & Hardware Engineer</p>
+                                <h3 class="text-lg font-bold text-gray-900">Sheila Rifqi</h3>
+                                <p class="text-base text-gray-400 mt-1 font-medium">Business Analyst</p>
                             </div>
                         </div>
 
@@ -270,12 +270,12 @@
                         <div
                             class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
                             <div class="h-96 w-full overflow-hidden bg-gray-100">
-                                <img src="{{ asset('images/farhan.png') }}" alt="Farhan Maulana"
+                                <img src="{{ asset('images/aidil.jpg') }}" alt="Muhammad Aidil Jupriadi Saleh "
                                     class="w-full h-full object-cover">
                             </div>
                             <div class="p-6">
-                                <h3 class="text-lg font-bold text-gray-900">Farhan Maulana</h3>
-                                <p class="text-xs text-gray-400 mt-1 font-medium">Software Engineer</p>
+                                <h3 class="text-lg font-bold text-gray-900">Muhammad Aidil Jupriadi Saleh </h3>
+                                <p class="text-base text-gray-400 mt-1 font-medium">System Architecture & Hardware Engineer</p>
                             </div>
                         </div>
 
@@ -283,12 +283,12 @@
                         <div
                             class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
                             <div class="h-96 w-full overflow-hidden bg-gray-100">
-                                <img src="{{ asset('images/siti.png') }}" alt="Siti Rahma"
+                                <img src="{{ asset('images/syifa.jpg') }}" alt="Syifa Dwitya Wulandari"
                                     class="w-full h-full object-cover">
                             </div>
                             <div class="p-6">
-                                <h3 class="text-lg font-bold text-gray-900">Siti Rahma</h3>
-                                <p class="text-xs text-gray-400 mt-1 font-medium">UI/UX Designer</p>
+                                <h3 class="text-lg font-bold text-gray-900">Syifa Dwitya Wulandari</h3>
+                                <p class="text-base text-gray-400 mt-1 font-medium">Business Analyst</p>
                             </div>
                         </div>
 
@@ -296,12 +296,12 @@
                         <div
                             class="w-full md:w-[calc((100%-64px)/3)] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
                             <div class="h-96 w-full overflow-hidden bg-gray-100">
-                                <img src="{{ asset('images/dodi.png') }}" alt="Dodi Hermawan"
+                                <img src="{{ asset('images/aldreno.jpg') }}" alt="Alldreno Hosea Perangin Angin "
                                     class="w-full h-full object-cover">
                             </div>
                             <div class="p-6">
-                                <h3 class="text-lg font-bold text-gray-900">Dodi Hermawan</h3>
-                                <p class="text-xs text-gray-400 mt-1 font-medium">Embedded Systems Engineer</p>
+                                <h3 class="text-lg font-bold text-gray-900">Alldreno Hosea Perangin Angin </h3>
+                                <p class="text-base text-gray-400 mt-1 font-medium">Hardware Engineer</p>
                             </div>
                         </div>
                     </div>
