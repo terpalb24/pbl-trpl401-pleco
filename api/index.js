@@ -1,13 +1,52 @@
 import 'dotenv/config';
-import { WebSocketServer } from 'ws';
 
 import * as db from './handlers/database.js';
-import config from './config.json' with { type: 'json' };
-import route from './handlers/route.js';
+import { checkConnection, connDisconnected } from './handlers/util.js';
+import { PushRouteMessage } from './routes/push.js';
+import { BroadcastCoords } from './routes/pull.js';
+
+import { serve, upgradeWebSocket } from '@hono/node-server';
+import { WebSocketServer } from 'ws';
+import { Hono } from 'hono';
 
 
 
 db.init();
+BroadcastCoords(db);
 
-const ws = new WebSocketServer(config.websocket);
-ws.on('connection', (ws, req) => route(ws, req, db));
+const app = new Hono();
+
+app.get(
+	'/push',
+	upgradeWebSocket(() => ({
+		onOpen(_, ws) {
+			checkConnection(ws, db, false);
+		},
+		onMessage(event, ws) {
+			PushRouteMessage(event, ws, db);
+		},
+		onClose(_, ws) {
+			connDisconnected(ws);
+		}
+	}))
+);
+
+app.get(
+	'/pull',
+	upgradeWebSocket(() => ({
+		onOpen(_, ws) {
+			checkConnection(ws, db, true);
+		},
+		onClose(_, ws) {
+			connDisconnected(ws, true);
+		}
+	}))
+);
+
+
+const wss = new WebSocketServer({ noServer: true });
+serve({
+	fetch: app.fetch,
+	port: process.env.PORT,
+	websocket: { server: wss },
+});

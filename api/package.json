@@ -19,7 +19,9 @@
   },
   "type": "module",
   "dependencies": {
+    "@hono/node-server": "^2.0.6",
     "dotenv": "^17.4.2",
+    "hono": "^4.12.27",
     "mariadb": "^3.5.2",
     "ws": "^8.21.0"
   }
