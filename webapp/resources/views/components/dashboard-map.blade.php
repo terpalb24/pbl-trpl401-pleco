@@ -1,4 +1,12 @@
+@props([
+    'api_key' => '',
+    'last_loc' => ''
+])
+
 <div class="bg-white rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.09)] border border-slate-100 p-6 mb-8">
+    <i id="api-key" data-api-key="{{ $api_key }}"></i>
+    <i id="last-loc" data-last-loc="{{ $last_loc }}"></i>
+
     <!-- Header Fitur -->
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <div>
@@ -82,7 +90,7 @@
                 <div class="flex-1 max-w-[160px] ml-4">
                     <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden p-0.5">
                         <div id="param-battery-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-500"
-                            style="width: 0%"></div>
+                            style="width: 0"></div>
                     </div>
                 </div>
             </div>
@@ -94,8 +102,12 @@
     document.addEventListener("DOMContentLoaded", function () {
         // --- 1. Inisialisasi Leaflet Map ---
         // Lokasi awal (Danau Batam Center)
-        const defaultLat = 1.1278;
-        const defaultLng = 104.0532;
+        const lastLocEl = document.getElementById("last-loc");
+        let lastLoc = lastLocEl.dataset.lastLoc;
+
+        const splittedLoc = lastLoc.split(" ");
+        const defaultLat = splittedLoc[0];
+        const defaultLng = splittedLoc[1];
 
         const map = L.map('robot-map', {
             zoomControl: true,
@@ -144,22 +156,15 @@
         const uiStatusText = document.getElementById('status-text');
 
         const uiParamStatus = document.getElementById('param-status');
-        const uiParamSignal = document.getElementById('param-signal');
-        const uiParamSpeed = document.getElementById('param-speed');
         const uiParamHeading = document.getElementById('param-heading');
         const uiParamLat = document.getElementById('param-lat');
         const uiParamLng = document.getElementById('param-lng');
         const uiParamBatteryText = document.getElementById('param-battery-text');
         const uiParamBatteryBar = document.getElementById('param-battery-bar');
 
-        const markerPing = document.getElementById('marker-ping');
-        const markerDirection = document.getElementById('marker-direction');
-
-        let lastCoordinates = null;
-
         function updateRobotUI(data) {
-            const lat = parseFloat(data.latitude).toFixed(6);
-            const lng = parseFloat(data.longitude).toFixed(6);
+            const lat = parseFloat(data[0]).toFixed(6);
+            const lng = parseFloat(data[1]).toFixed(6);
             const speed = parseFloat(data.speed).toFixed(1);
             const heading = parseInt(data.heading || 0);
             const battery = parseInt(data.battery || 0);
@@ -168,8 +173,6 @@
 
             // Update Teks Parameter
             if (uiParamStatus) uiParamStatus.innerText = status;
-            if (uiParamSignal) uiParamSignal.innerText = signal;
-            if (uiParamSpeed) uiParamSpeed.innerText = `${speed} m/s`;
             if (uiParamHeading) uiParamHeading.innerText = `${heading}°`;
             if (uiParamLat) uiParamLat.innerText = lat;
             if (uiParamLng) uiParamLng.innerText = lng;
@@ -188,7 +191,7 @@
             }
 
             // Update Marker Peta & Gambar polyline lintasan
-            const newPos = [parseFloat(data.latitude), parseFloat(data.longitude)];
+            const newPos = [parseFloat(lat), parseFloat(lng)];
             robotMarker.setLatLng(newPos);
             robotPath.addLatLng(newPos);
 
@@ -210,109 +213,18 @@
             map.panTo(newPos);
         }
 
-        // --- 3. Logika Simulasi Rute (Fallback) ---
-        let simulationInterval = null;
-        let simRouteIndex = 0;
-        let simBattery = 92;
-
-        // Koordinat titik patroli mengelilingi Danau Batam Center
-        const simPath = [
-            [1.1278, 104.0532],
-            [1.1283, 104.0536],
-            [1.1290, 104.0543],
-            [1.1296, 104.0549],
-            [1.1301, 104.0542],
-            [1.1306, 104.0535],
-            [1.1311, 104.0527],
-            [1.1304, 104.0519],
-            [1.1298, 104.0513],
-            [1.1290, 104.0517],
-            [1.1284, 104.0522],
-            [1.1280, 104.0527]
-        ];
-
-        function startSimulation() {
-            if (simulationInterval) clearInterval(simulationInterval);
-
-            // Ubah badge koneksi ke mode Simulasi
-            uiStatusIndicator.className = "relative inline-flex rounded-full h-3 w-3 bg-yellow-500";
-            uiPingIndicator.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75";
-            uiStatusText.innerText = "Simulasi (Active)";
-            uiStatusText.className = "text-sm font-semibold text-yellow-600";
-
-            // Atur warna marker ke oranye/kuning untuk mode simulasi
-            const directionEl = document.getElementById('marker-direction');
-            if (directionEl) {
-                directionEl.classList.remove('bg-blue-600');
-                directionEl.classList.add('bg-yellow-500');
-            }
-            const pingEl = document.getElementById('marker-ping');
-            if (pingEl) {
-                pingEl.classList.remove('bg-blue-500');
-                pingEl.classList.add('bg-yellow-400');
-            }
-
-            simulationInterval = setInterval(function () {
-                const currentCoord = simPath[simRouteIndex];
-                const nextRouteIndex = (simRouteIndex + 1) % simPath.length;
-                const nextCoord = simPath[nextRouteIndex];
-
-                // Hitung arah (heading) antara dua titik koordinat
-                const dy = (nextCoord[0] - currentCoord[0]);
-                const dx = Math.cos(Math.PI / 180 * currentCoord[0]) * (nextCoord[1] - currentCoord[1]);
-                let heading = Math.atan2(dx, dy) * 180 / Math.PI;
-                if (heading < 0) heading += 360;
-
-                // Tambahkan sedikit noise/variasi acak agar gerakan robot natural
-                const noiseLat = (Math.random() - 0.5) * 0.0001;
-                const noiseLng = (Math.random() - 0.5) * 0.0001;
-
-                const finalLat = currentCoord[0] + noiseLat;
-                const finalLng = currentCoord[1] + noiseLng;
-
-                // Kurangi baterai secara lambat
-                if (Math.random() > 0.8) {
-                    simBattery--;
-                    if (simBattery < 10) simBattery = 100; // Reset baterai jika habis
-                }
-
-                // Buat data payload tiruan mirip WebSocket
-                const mockPayload = {
-                    latitude: finalLat,
-                    longitude: finalLng,
-                    speed: (Math.random() * 0.5 + 0.8), // 0.8 - 1.3 m/s
-                    heading: Math.round(heading),
-                    battery: simBattery,
-                    status: 'Patroli',
-                    signal: Math.random() > 0.9 ? 'Baik' : 'Sangat Baik'
-                };
-
-                updateRobotUI(mockPayload);
-                simRouteIndex = nextRouteIndex;
-            }, 3000); // Update setiap 3 detik
-        }
-
-        function stopSimulation() {
-            if (simulationInterval) {
-                clearInterval(simulationInterval);
-                simulationInterval = null;
-            }
-        }
-
         // --- 4. Logika WebSocket Client Real-time ---
         let socket = null;
         let reconnectTimeout = null;
 
         // Silakan sesuaikan URL WebSocket di bawah ini sesuai server WebSocket robot Anda
-        const wsUrl = 'ws://127.0.0.1:8080/robot-gps';
+        const wsUrl = 'wss://pleco-wss.hosea.dev/pull';
 
         function connectWebSocket() {
             if (reconnectTimeout) {
                 clearTimeout(reconnectTimeout);
                 reconnectTimeout = null;
             }
-
-            console.log(`[WebSocket] Menghubungkan ke ${wsUrl}...`);
 
             // Atur status UI ke menghubungkan
             uiStatusIndicator.className = "relative inline-flex rounded-full h-3 w-3 bg-red-500";
@@ -321,16 +233,15 @@
             uiStatusText.className = "text-sm font-semibold text-red-500";
 
             try {
-                socket = new WebSocket(wsUrl);
+                const apiKey = document.getElementById("api-key").dataset.apiKey;
+                if (!apiKey) return;
+                socket = new WebSocket(wsUrl, [apiKey]);
 
                 socket.onopen = function () {
-                    console.log("[WebSocket] Terhubung dengan sukses!");
-                    stopSimulation(); // Hentikan simulasi saat berhasil terhubung
-
                     // Ubah status ke Terhubung (Live)
                     uiStatusIndicator.className = "relative inline-flex rounded-full h-3 w-3 bg-green-500";
                     uiPingIndicator.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75";
-                    uiStatusText.innerText = "Terhubung (Live)";
+                    uiStatusText.innerText = "Terhubung";
                     uiStatusText.className = "text-sm font-semibold text-green-600";
 
                     // Atur warna marker ke biru untuk mode live WebSocket
@@ -348,30 +259,30 @@
 
                 socket.onmessage = function (event) {
                     try {
-                        const data = JSON.parse(event.data);
+                        const data = event.data.split(" ");
+                        if (data.length !== 2) return;
                         updateRobotUI(data);
                     } catch (e) {
-                        console.error("[WebSocket] Gagal melakukan parsing JSON data:", e);
+                        console.error(e.message);
                     }
                 };
 
-                socket.onerror = function (err) {
-                    console.error("[WebSocket] Terjadi error pada koneksi.");
+                socket.onerror = function () {
+                    reconnectWss();
                 };
 
                 socket.onclose = function () {
-                    console.warn("[WebSocket] Koneksi terputus. Mengaktifkan mode simulasi dan mencoba menghubungkan ulang dalam 5 detik...");
-                    startSimulation();
-
-                    // Coba hubungkan kembali setelah 5 detik secara otomatis
-                    reconnectTimeout = setTimeout(connectWebSocket, 5000);
+                    reconnectWss();
                 };
 
             } catch (e) {
-                console.error("[WebSocket] Gagal inisialisasi koneksi:", e);
-                startSimulation();
-                reconnectTimeout = setTimeout(connectWebSocket, 5000);
+                reconnectWss();
             }
+        }
+
+        function reconnectWss() {
+            console.log(1)
+            reconnectTimeout = setTimeout(connectWebSocket, 5000);
         }
 
         // Hubungkan WebSocket saat pertama kali dimuat
