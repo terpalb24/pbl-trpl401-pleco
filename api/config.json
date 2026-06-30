@@ -1,9 +1,4 @@
 {
-	"websocket": {
-		"port": 8080,
-		"closeTimeout": 5000,
-		"maxPayload": 149
-	},
 	"status_codes": {
 		"OK": 200,
 		"INVALID_BODY": 422,
