@@ -1,5 +1,5 @@
 import config from '../config.json' with { type: 'json' };
-import { printError, parseKey } from '../handlers/util.js';
+import { printError, parseKey, fetchRobotData, pullConnections } from '../handlers/util.js';
 const STATUS_CODES = config.status_codes;
 const PAYLOAD_PREFIXES = config.payload_prefixes;
 
@@ -69,7 +69,9 @@ async function insertTrashData(db, robotId, trashType, amount) {
 async function processGPSData(ws, db, data) {
 	const insertSuccess = await insertGPSData(db, ws.robotId, data);
 	if (insertSuccess) {
-		return ws.send(STATUS_CODES.OK);
+		ws.send(STATUS_CODES.OK);
+		await broadcastData(db, data);
+		return;
 	} else {
 		return ws.send(STATUS_CODES.INVALID_TRASH_TYPE);
 	}
@@ -86,5 +88,13 @@ async function insertGPSData(db, robotId, coords) {
 		return false;
 	} finally {
 		if (conn) conn.release();
+	}
+}
+
+async function broadcastData(db, data) {
+	if (!pullConnections.length) return;
+
+	for (const conn of pullConnections) {
+		conn.send(data);
 	}
 }
