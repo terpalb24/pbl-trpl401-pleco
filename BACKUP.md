@@ -11,14 +11,14 @@ FLUSH PRIVILEGES;
 Perintah-perintah tersebut akan membuat sebuah user baru khusus untuk pencadangan.
 
 ## 2. Menyimpan credential user di sebuah file
-Ketik perintah `sudo nano /root/backup.my.cnf` untuk membuat file `backup.my.cnf`.
+Ketik perintah `sudo nano /root/backup.my.cnf` untuk membuat file `backup.my.cnf`.<br>
 Kemudian, salin dan tempelkan kode di bawah pada file tersebut:
 ```
 [client]
 user=backup
 password="bU4t_kat4sand1_kuat_d!sini!"
 ```
-Kemudian simpan dan tutup file dengan menekan tombol `CTRL + X`, lalu `Y`, terakhir `Enter`.
+Kemudian simpan dan tutup file dengan menekan tombol `CTRL + X`, lalu `Y`, terakhir `Enter`.<br>
 Langkah ini dilakukan untuk menyimpan nama dan kata sandi user untuk mencegah kata sandi muncul di script ataupun log.
 
 ## 3. Membuat script pencadangan
@@ -74,12 +74,12 @@ log "Backup selesai"
 Terakhir, ketik perintah `sudo chmod +x /usr/local/bin/backup_mariadb.sh`.
 
 ## 4. Pasang ke cron
-Edit crontab dengan perintah `sudo  crontab -e`.
-Pilih `1`.
-Masukkan `*/15 * * * * /usr/local/bin/backup_mariadb.sh`.
+Edit crontab dengan perintah `sudo  crontab -e`.<br>
+Pilih `1`.<br>
+Masukkan `*/15 * * * * /usr/local/bin/backup_mariadb.sh`.<br>
 Kemudian simpan dan tutup file dengan menekan tombol `CTRL + X`, lalu `Y`, terakhir `Enter`.
 
 
 ## 5. Periksa cron
-Gunakan perintah `sudo crontab -l` untuk memeriksa apakah sistem cron backup sudah ada.
+Gunakan perintah `sudo crontab -l` untuk memeriksa apakah sistem cron backup sudah ada.<br>
 Terakhir, gunakan perintah `tail -f /var/log/mariadb_backup.log` untuk memeriksa log pencadangan.
