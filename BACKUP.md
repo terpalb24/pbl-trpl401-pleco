@@ -82,4 +82,4 @@ Kemudian simpan dan tutup file dengan menekan tombol `CTRL + X`, lalu `Y`, terak
 
 ## 5. Periksa cron
 Gunakan perintah `sudo crontab -l` untuk memeriksa apakah sistem cron backup sudah ada.<br>
-Terakhir, gunakan perintah `tail -f /var/log/mariadb_backup.log` untuk memeriksa log pencadangan.
+Terakhir, gunakan perintah `sudo tail -f /var/log/mariadb_backup.log` untuk memeriksa log pencadangan.
