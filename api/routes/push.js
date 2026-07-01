@@ -67,6 +67,12 @@ async function insertTrashData(db, robotId, trashType, amount) {
 }
 
 async function processGPSData(ws, db, data) {
+	const splittedData = data.split(" ");
+	if (splittedData.length !== 2) return ws.send(STATUS_CODES.INVALID_BODY);
+
+	let [lat, lng] = [splittedData[0], splittedData[1]];
+	if (isNaN(lat) || isNaN(lng)) return ws.send(STATUS_CODES.INVALID_BODY);
+
 	const insertSuccess = await insertGPSData(db, ws.robotId, data);
 	if (insertSuccess) {
 		ws.send(STATUS_CODES.OK);
