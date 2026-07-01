@@ -18,7 +18,7 @@
         <div class="flex items-center space-x-2">
             <span class="relative flex h-3 w-3">
                 <span id="ping-indicator"
-                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                      class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
                 <span id="status-indicator" class="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
             </span>
             <span id="status-text" class="text-sm font-semibold text-slate-600">Menghubungkan...</span>
@@ -39,10 +39,10 @@
                 <div class="p-1.5 bg-blue-50 text-blue-600 rounded-lg shrink-0">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
                         </path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
                 </div>
                 <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Koordinat Terkini</span>
@@ -72,7 +72,7 @@
                     <div class="p-1.5 bg-emerald-50 text-emerald-600 rounded-lg shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+                                  d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
                             </path>
                         </svg>
                     </div>
@@ -90,7 +90,7 @@
                 <div class="flex-1 max-w-[160px] ml-4">
                     <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden p-0.5">
                         <div id="param-battery-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-500"
-                            style="width: 0"></div>
+                             style="width: 0"></div>
                     </div>
                 </div>
             </div>
@@ -99,15 +99,19 @@
 </div>
 
 <script>
+    const uiParamLat = document.getElementById('param-lat');
+    const uiParamLng = document.getElementById('param-lng');
+
     document.addEventListener("DOMContentLoaded", function () {
-        // --- 1. Inisialisasi Leaflet Map ---
-        // Lokasi awal (Danau Batam Center)
         const lastLocEl = document.getElementById("last-loc");
         let lastLoc = lastLocEl.dataset.lastLoc;
 
         const splittedLoc = lastLoc.split(" ");
         const defaultLat = splittedLoc[0];
         const defaultLng = splittedLoc[1];
+
+        if (uiParamLat) uiParamLat.innerText = defaultLat;
+        if (uiParamLng) uiParamLng.innerText = defaultLng;
 
         const map = L.map('robot-map', {
             zoomControl: true,
@@ -157,19 +161,15 @@
 
         const uiParamStatus = document.getElementById('param-status');
         const uiParamHeading = document.getElementById('param-heading');
-        const uiParamLat = document.getElementById('param-lat');
-        const uiParamLng = document.getElementById('param-lng');
         const uiParamBatteryText = document.getElementById('param-battery-text');
         const uiParamBatteryBar = document.getElementById('param-battery-bar');
 
         function updateRobotUI(data) {
             const lat = parseFloat(data[0]).toFixed(6);
             const lng = parseFloat(data[1]).toFixed(6);
-            const speed = parseFloat(data.speed).toFixed(1);
             const heading = parseInt(data.heading || 0);
             const battery = parseInt(data.battery || 0);
             const status = data.status || 'Active';
-            const signal = data.signal || 'Sangat Baik';
 
             // Update Teks Parameter
             if (uiParamStatus) uiParamStatus.innerText = status;
@@ -217,7 +217,6 @@
         let socket = null;
         let reconnectTimeout = null;
 
-        // Silakan sesuaikan URL WebSocket di bawah ini sesuai server WebSocket robot Anda
         const wsUrl = 'wss://pleco-wss.hosea.dev/pull';
 
         function connectWebSocket() {
