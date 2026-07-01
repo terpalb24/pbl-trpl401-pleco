@@ -27,7 +27,7 @@
 
     <!-- Peta Leaflet (Full Width) -->
     <div class="relative z-10 mb-6">
-        <div id="robot-map" class="h-[500px] w-full border border-slate-200 shadow-sm z-0"></div>
+        <div id="robot-map" class="h-[500px] w-full border border-slate-200 shadow-sm z-0" style="height: 500px;"></div>
     </div>
 
     <!-- Parameter Cards (Horizontal Grid) -->
