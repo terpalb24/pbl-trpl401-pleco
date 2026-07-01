@@ -48,25 +48,25 @@
                   <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.09)] border border-slate-100 p-6 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.09)] transition-all duration-300">
                      <h3 class="text-center font-bold text-slate-700 mb-4 text-lg tracking-tight">Botol Mineral</h3>
                      <img src="{{ asset('images/kategori/botol_mineral.png') }}" class="w-full h-36 object-cover rounded-xl mb-5 shadow-sm" alt="Botol Mineral">
-                     <p class="text-center font-extrabold text-4xl text-slate-800 trash-count" data-base="10">10</p>
+                     <p class="text-center font-extrabold text-4xl text-slate-800 trash-count" data-base="{{ $botol_mineral }}">{{ $botol_mineral }}</p>
                   </div>
                   <!-- Card 2 -->
                   <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.09)] border border-slate-100 p-6 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.09)] transition-all duration-300">
                      <h3 class="text-center font-bold text-slate-700 mb-4 text-lg tracking-tight">Plastik</h3>
                      <img src="{{ asset('images/kategori/plastik.png') }}" class="w-full h-36 object-cover rounded-xl mb-5 shadow-sm" alt="Plastik">
-                     <p class="text-center font-extrabold text-4xl text-slate-800 trash-count" data-base="5">5</p>
+                     <p class="text-center font-extrabold text-4xl text-slate-800 trash-count" data-base="{{ $plastik }}">{{ $plastik }}</p>
                   </div>
                   <!-- Card 3 -->
                   <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.09)] border border-slate-100 p-6 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.09)] transition-all duration-300">
-                     <h3 class="text-center font-bold text-slate-700 mb-4 text-lg tracking-tight">Sterofoam</h3>
-                     <img src="{{ asset('images/kategori/sterofoam.png') }}" class="w-full h-36 object-cover rounded-xl mb-5 shadow-sm" alt="Sterofoam">
-                     <p class="text-center font-extrabold text-4xl text-slate-800 trash-count" data-base="7">7</p>
+                     <h3 class="text-center font-bold text-slate-700 mb-4 text-lg tracking-tight">Karton Susu</h3>
+                     <img src="{{ asset('images/kategori/karton_susu.png') }}" class="w-full h-36 object-cover rounded-xl mb-5 shadow-sm" alt="Karton Susu">
+                     <p class="text-center font-extrabold text-4xl text-slate-800 trash-count" data-base="{{ $karton_susu }}">{{ $karton_susu }}</p>
                   </div>
                   <!-- Card 4 -->
                   <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.09)] border border-slate-100 p-6 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.09)] transition-all duration-300">
                      <h3 class="text-center font-bold text-slate-700 mb-4 text-lg tracking-tight">Lainnya</h3>
                      <img src="{{ asset('images/kategori/lainnya.png') }}" class="w-full h-36 object-cover rounded-xl mb-5 shadow-sm" alt="Lainnya">
-                     <p class="text-center font-extrabold text-4xl text-slate-800 trash-count" data-base="7">7</p>
+                     <p class="text-center font-extrabold text-4xl text-slate-800 trash-count" data-base="{{ $lainnya }}">{{ $lainnya }}</p>
                   </div>
                 </div>
 
@@ -147,6 +147,8 @@
                 label.innerText = text;
             }
 
+            const totalTrash = {{ $totalTrash }};
+
             function generateDummyData(mode, offset) {
                 let categories = [];
                 let data = [];
@@ -160,7 +162,13 @@
                         if (offset === 0 && (i + 1) > currentDay) {
                              data.push(0); // Future days in current week are 0
                         } else {
-                             data.push(Math.floor(Math.random() * 50) + 10);
+                             if (totalTrash === 0) {
+                                 data.push(0);
+                             } else {
+                                 let baseDaily = totalTrash / 7;
+                                 let randomMultiplier = (Math.random() * 1.2) + 0.4;
+                                 data.push(Math.floor(baseDaily * randomMultiplier));
+                             }
                         }
                     }
                 } else if (mode === 'bulanan') {
@@ -170,7 +178,13 @@
                         if (offset === 0 && i > date.getMonth()) {
                             data.push(0); // Future months in current year are 0
                         } else {
-                            data.push(Math.floor(Math.random() * 300) + 50);
+                             if (totalTrash === 0) {
+                                 data.push(0);
+                             } else {
+                                 let baseMonthly = totalTrash / 12;
+                                 let randomMultiplier = (Math.random() * 1.2) + 0.4;
+                                 data.push(Math.floor(baseMonthly * randomMultiplier));
+                             }
                         }
                     }
                 } else if (mode === 'tahunan') {
@@ -179,9 +193,21 @@
                     
                     for(let i=0; i<5; i++) {
                         if (offset === 0 && i === 4) {
-                             data.push(Math.floor(Math.random() * 1500) + 500); // Current year might be lower
+                             if (totalTrash === 0) {
+                                 data.push(0);
+                             } else {
+                                 let baseYearly = totalTrash / 3;
+                                 let randomMultiplier = (Math.random() * 1.0) + 0.5;
+                                 data.push(Math.floor(baseYearly * randomMultiplier));
+                             }
                         } else {
-                             data.push(Math.floor(Math.random() * 3000) + 1500);
+                             if (totalTrash === 0) {
+                                 data.push(0);
+                             } else {
+                                 let baseYearly = totalTrash / 2;
+                                 let randomMultiplier = (Math.random() * 1.0) + 0.5;
+                                 data.push(Math.floor(baseYearly * randomMultiplier));
+                             }
                         }
                     }
                 }
@@ -242,7 +268,8 @@
             const yyyy = today.getFullYear();
             const mm = String(today.getMonth() + 1).padStart(2, '0');
             const dd = String(today.getDate()).padStart(2, '0');
-            trashDateFilter.value = `${yyyy}-${mm}-${dd}`;
+            const todayStr = `${yyyy}-${mm}-${dd}`;
+            trashDateFilter.value = todayStr;
 
             function animateValue(obj, start, end, duration) {
                 let startTimestamp = null;
@@ -263,6 +290,7 @@
                 
                 const selectedDate = new Date(selectedDateStr);
                 const isFuture = selectedDate > new Date();
+                const isToday = selectedDateStr === todayStr;
 
                 const trashCounts = document.querySelectorAll('.trash-count');
                 
@@ -270,9 +298,11 @@
                     const currentVal = parseInt(el.innerText);
                     let targetVal = 0;
 
-                    if (!isFuture) {
+                    const base = parseInt(el.getAttribute('data-base'));
+                    if (isToday) {
+                        targetVal = base;
+                    } else if (!isFuture) {
                         const seed = selectedDate.getTime();
-                        const base = parseInt(el.getAttribute('data-base'));
                         const x = Math.sin(seed + base) * 10000;
                         const randomMultiplier = ((x - Math.floor(x)) * 1.2) + 0.3;
                         targetVal = Math.floor(base * randomMultiplier) + Math.floor((x - Math.floor(x)) * 5);
