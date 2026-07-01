@@ -9,19 +9,12 @@
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
     <!-- Leaflet.js for GPS Live Tracking Map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <style>
-        .bg-wave-pattern {
-            background-color: #f8fafc;
-            background-image: radial-gradient(at 0% 0%, hsla(215,98%,61%,0.08) 0px, transparent 50%),
-                              radial-gradient(at 100% 100%, hsla(199,89%,48%,0.08) 0px, transparent 50%);
-        }
-    </style>
 </head>
 <body class="bg-white">
     <x-navbar.loggedin></x-navbar.loggedin>
@@ -31,7 +24,7 @@
 
         <div id="main-content" class="relative w-full h-full overflow-y-auto lg:ml-64 bg-white min-h-screen">
             <main class="p-8">
-                
+
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 mt-2 gap-4">
                     <div>
                         <h2 class="font-bold text-slate-800 text-2xl tracking-tight">Analisis Sampah Terdeteksi</h2>
@@ -71,19 +64,19 @@
                 </div>
 
                 <!-- Live GPS Tracking Map -->
-                <x-dashboard-map />
+                <x-dashboard-map :api_key="$api_key ?? ''" :last_loc="$last_loc" />
 
                 <div class="grid grid-cols-1 gap-4">
                    <!-- Activity Chart -->
                    <div class="bg-white rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.09)] border border-slate-100 p-8">
                       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                          <h3 class="font-bold text-slate-800 text-xl tracking-tight">Aktivitas</h3>
-                         
+
                          <div class="flex items-center space-x-2">
                              <button id="prev-period" class="p-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-100 transition" title="Sebelumnya">
                                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                              </button>
-                             
+
                              <div class="flex flex-col items-center">
                                  <select id="activity-filter" class="bg-slate-50 border border-slate-200 rounded-lg text-slate-600 text-sm font-medium focus:ring-blue-500 focus:border-blue-500 pl-3 pr-7 py-2 cursor-pointer shadow-sm">
                                     <option value="mingguan">Mingguan</option>
@@ -117,19 +110,19 @@
 
                 let text = '';
                 const date = new Date();
-                
+
                 if (currentMode === 'mingguan') {
                     let weekDate = new Date();
-                    let currentDayIndex = weekDate.getDay() === 0 ? 7 : weekDate.getDay(); 
+                    let currentDayIndex = weekDate.getDay() === 0 ? 7 : weekDate.getDay();
                     weekDate.setDate(weekDate.getDate() - currentDayIndex + 1 + (periodOffset * 7));
-                    
+
                     let startDate = new Date(weekDate);
                     let endDate = new Date(weekDate);
                     endDate.setDate(startDate.getDate() + 6);
-                    
+
                     let startStr = startDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
                     let endStr = endDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-                    
+
                     let weekName = "";
                     if (periodOffset === 0) weekName = "Minggu Ini ";
                     else if (periodOffset === -1) weekName = "Minggu Lalu ";
@@ -152,12 +145,12 @@
             function generateDummyData(mode, offset) {
                 let categories = [];
                 let data = [];
-                const date = new Date(); 
-                
+                const date = new Date();
+
                 if (mode === 'mingguan') {
                     categories = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
-                    let currentDay = date.getDay() === 0 ? 7 : date.getDay(); 
-                    
+                    let currentDay = date.getDay() === 0 ? 7 : date.getDay();
+
                     for(let i=0; i<7; i++) {
                         if (offset === 0 && (i + 1) > currentDay) {
                              data.push(0); // Future days in current week are 0
@@ -173,7 +166,7 @@
                     }
                 } else if (mode === 'bulanan') {
                     categories = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-                    
+
                     for(let i=0; i<12; i++) {
                         if (offset === 0 && i > date.getMonth()) {
                             data.push(0); // Future months in current year are 0
@@ -190,7 +183,7 @@
                 } else if (mode === 'tahunan') {
                     let endYear = date.getFullYear() + (offset * 5);
                     categories = [endYear-4, endYear-3, endYear-2, endYear-1, endYear];
-                    
+
                     for(let i=0; i<5; i++) {
                         if (offset === 0 && i === 4) {
                              if (totalTrash === 0) {
@@ -259,10 +252,10 @@
             });
 
             refreshChart();
-            
+
             // Trash Items Date Filter Logic
             const trashDateFilter = document.getElementById('trash-date-filter');
-            
+
             // Set default date to today
             const today = new Date();
             const yyyy = today.getFullYear();
@@ -287,13 +280,13 @@
             trashDateFilter.addEventListener('change', function(e) {
                 const selectedDateStr = e.target.value;
                 if (!selectedDateStr) return;
-                
+
                 const selectedDate = new Date(selectedDateStr);
                 const isFuture = selectedDate > new Date();
                 const isToday = selectedDateStr === todayStr;
 
                 const trashCounts = document.querySelectorAll('.trash-count');
-                
+
                 trashCounts.forEach(el => {
                     const currentVal = parseInt(el.innerText);
                     let targetVal = 0;
@@ -307,7 +300,7 @@
                         const randomMultiplier = ((x - Math.floor(x)) * 1.2) + 0.3;
                         targetVal = Math.floor(base * randomMultiplier) + Math.floor((x - Math.floor(x)) * 5);
                     }
-                    
+
                     animateValue(el, currentVal, targetVal, 500);
                 });
             });
