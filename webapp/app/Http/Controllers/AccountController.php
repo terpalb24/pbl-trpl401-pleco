@@ -150,7 +150,7 @@ class AccountController extends Controller
         }
 
         // Prevent self-deletion
-        if ($account->account_id === auth()->user()->account_id) {
+             {
             return redirect()->route('admin.accounts.index')->withErrors(['error' => 'Anda tidak dapat menghapus akun Anda sendiri.']);
         }
 
