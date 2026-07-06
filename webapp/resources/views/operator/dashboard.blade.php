@@ -93,7 +93,7 @@
                       </div>
                       <div id="activity-chart"></div>
                    </div>
-
+                </div>
             </main>
         </div>
     </div>
