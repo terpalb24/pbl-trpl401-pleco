@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Trash;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Carbon\Exceptions\InvalidFormatException;
 use Illuminate\Http\Request;
 use function PHPUnit\Framework\isEmpty;
 
@@ -12,19 +13,36 @@ class StatsController extends Controller
 {
     public function index(Request $request) {
         $data = $request->validate([
-            'period' => ['required', 'string', 'in:daily,monthly,yearly'],
-            'start'  => ['required', 'integer'],
+            'period' => ['required', 'string', 'in:one_day,daily,monthly,yearly'],
+            'start'  => ['required', 'string'],
         ]);
 
         $period = $data['period'];
         $start = $data['start'];
 
+        if ($period == 'one_day') {
+            try {
+                Carbon::parse($start); // Check if the date is valid
+
+                $data = Trash::whereDate('collected_at', $start)
+                    ->select(['trash_id', 'total'])
+                    ->get();
+
+                return $data;
+            } catch (InvalidFormatException) {
+                return response()->json('Bad Request', 400);
+            }
+        }
+
+        $int_start = intval($start);
+        if (is_nan($int_start)) return response()->json('Bad Request', 400);
+
         if ($period == 'daily') {
-            return getDailyStats($start);
+            return getDailyStats($int_start);
         } else if ($period == 'monthly') {
-            return getMonthlyStats($start);
+            return getMonthlyStats($int_start);
         } else if ($period == 'yearly') {
-            return getYearlyStats($start);
+            return getYearlyStats($int_start);
         }
 
         return [];

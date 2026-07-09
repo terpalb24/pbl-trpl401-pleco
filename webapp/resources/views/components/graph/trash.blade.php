@@ -25,5 +25,5 @@
     <canvas id="myChart" height="100"></canvas>
 </div>
 
-<script src="{{ @asset('graph/chart.umd.min.js') }}"></script>
-<script src="{{ @asset('graph/index.js') }}" defer></script>
+<script src="{{ @asset('js/graph/chart.umd.min.js') }}"></script>
+<script src="{{ @asset('js/graph/index.js') }}" defer></script>

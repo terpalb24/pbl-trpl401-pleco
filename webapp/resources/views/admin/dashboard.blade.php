@@ -32,22 +32,30 @@
                     </div>
                     <div class="flex items-center space-x-3 bg-white p-2 rounded-xl shadow-sm border border-slate-100">
                         <label for="trash-date-filter" class="text-sm font-medium text-slate-600 ml-2">Tanggal:</label>
-                        <input type="date" id="trash-date-filter" class="bg-slate-50 border border-slate-200 rounded-lg text-slate-600 text-sm font-medium focus:ring-blue-500 focus:border-blue-500 px-3 py-2 cursor-pointer outline-none">
+                        <input
+                            type="date" id="trash-date-filter"
+                            class="bg-slate-50 border border-slate-200 rounded-lg text-slate-600 text-sm
+                            font-medium focus:ring-blue-500 focus:border-blue-500 px-3 py-2 cursor-pointer
+                            outline-none"
+                        >
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8" id="trash-cards-container">
                     <x-card.trash
+                        id="BOTTLE"
                         name="Botol Mineral"
                         image_name="bottle.png"
                         :total="$bottle"
                     ></x-card.trash>
                     <x-card.trash
+                        id="PLASTIC_BAG"
                         name="Kantong Plastik"
                         image_name="plastic_bag.png"
                         :total="$plastic_bag"
                     ></x-card.trash>
                     <x-card.trash
+                        id="MILK_CARTON"
                         name="Karton Susu"
                         image_name="milk_carton.png"
                         :total="$milk_carton"
@@ -67,5 +75,7 @@
             </main>
         </div>
     </div>
+
+    <script src="{{ @asset('js/dashboard/date-filter.js') }}"></script>
 </body>
 </html>
