@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>Daftar Akun Pengguna</title>
+    <title>PLECO | Daftar Akun Pengguna</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -19,7 +19,7 @@
 
         <div id="main-content" class="relative w-full h-full overflow-y-auto lg:ml-64 bg-slate-50/50 min-h-screen">
             <main class="p-8">
-                
+
                 <!-- Header Section -->
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 mt-2 gap-4">
                     <div>
@@ -138,13 +138,13 @@
                 <!-- Pagination Footer -->
                 <div class="mt-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white p-4 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-slate-100" id="pagination-footer">
                     <div class="flex items-center gap-2 text-sm text-slate-500 font-medium">
-                        <span>Tampil</span>
+                        <span>Tampilkan</span>
                         <select id="per-page-select" class="bg-slate-50 border border-slate-200 rounded-lg text-slate-600 text-sm font-semibold focus:ring-blue-500 focus:border-blue-500 pl-3 pr-8 py-1.5 outline-none cursor-pointer">
                             <option value="10" selected>10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
                         </select>
-                        <span>dari <span id="total-count" class="font-semibold text-slate-700">0</span> data</span>
+                        <span>dari <span id="total-count" class="font-semibold text-slate-700">0</span> akun</span>
                     </div>
                     <div id="pagination-links">
                     </div>
@@ -261,7 +261,7 @@
                      e.preventDefault();
                      const form = deleteBtn.closest('form');
                      const name = deleteBtn.getAttribute('data-name');
-                     
+
                       Swal.fire({
                           title: 'Hapus Akun?',
                           text: `Apakah Anda yakin ingin menghapus akun "${name}"? Tindakan ini tidak dapat dibatalkan.`,
@@ -399,8 +399,8 @@
             function getFilteredAccounts() {
                 if (!searchQuery) return allAccounts;
                 const q = searchQuery.toLowerCase();
-                return allAccounts.filter(a => 
-                    a.full_name.toLowerCase().includes(q) || 
+                return allAccounts.filter(a =>
+                    a.full_name.toLowerCase().includes(q) ||
                     a.email.toLowerCase().includes(q)
                 );
             }
