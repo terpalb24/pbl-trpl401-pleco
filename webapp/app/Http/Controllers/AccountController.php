@@ -45,7 +45,9 @@ class AccountController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        $accounts = Account::orderBy('full_name')->get();
+        $accounts = Account::where('role', 'OPERATOR')
+            ->orderBy('full_name')
+            ->get();
 
         return view('admin.accounts.index', compact('accounts'));
     }
@@ -119,7 +121,7 @@ class AccountController extends Controller
 
     public function bulkDestroy(Request $request)
     {
-        if (auth()->user()->role !== 'ADMIN') {
+        if (auth()->user()['role'] !== 'ADMIN') {
             abort(403, 'Unauthorized action.');
         }
 
@@ -145,12 +147,11 @@ class AccountController extends Controller
 
     public function destroy(Account $account)
     {
-        if (auth()->user()->role !== 'ADMIN') {
+        if (auth()->user()['role'] !== 'ADMIN') {
             abort(403, 'Unauthorized action.');
         }
 
-        // Prevent self-deletion
-             {
+        if (auth()->user()['account_id'] == $account['account_id']) {
             return redirect()->route('admin.accounts.index')->withErrors(['error' => 'Anda tidak dapat menghapus akun Anda sendiri.']);
         }
 

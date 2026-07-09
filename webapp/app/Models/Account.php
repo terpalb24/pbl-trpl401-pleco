@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 
 /**
  * @method static Account create(array $attributes = [])
+ * @method static Account whereIn(string $column_name, string $value)
  */
 class Account extends Authenticatable implements CanResetPassword
 {

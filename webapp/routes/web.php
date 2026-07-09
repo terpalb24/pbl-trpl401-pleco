@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\StatsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -32,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/accounts/{account}/edit', [AccountController::class, 'edit'])->name('accounts.edit');
     Route::put('/admin/accounts/{account}', [AccountController::class, 'updateUser'])->name('accounts.updateUser');
     Route::delete('/admin/accounts/{account}', [AccountController::class, 'destroy'])->name('accounts.destroy');
+
+    Route::get('/stats', [StatsController::class, 'index']);
 
     Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 });

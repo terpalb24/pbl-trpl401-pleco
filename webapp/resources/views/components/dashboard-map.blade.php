@@ -280,7 +280,6 @@
         }
 
         function reconnectWss() {
-            console.log(1)
             reconnectTimeout = setTimeout(connectWebSocket, 5000);
         }
 

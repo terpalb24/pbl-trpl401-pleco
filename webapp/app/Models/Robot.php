@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\CanResetPassword;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 /**
  * @method static Robot first(array $attributes = [])
  */
-class Robot extends Authenticatable implements CanResetPassword
+class Robot extends Model
 {
     protected $table = 'robots';
     protected $primaryKey = 'robot_id';
