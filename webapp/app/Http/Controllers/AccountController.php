@@ -102,13 +102,11 @@ class AccountController extends Controller
         $validated = $request->validate([
             'full_name' => ['required', 'string', 'min:3', 'max:60'],
             'email' => ['required', 'string', 'email', 'max:60', 'unique:accounts,email,' . $account->account_id . ',account_id'],
-            'role' => ['required', 'in:ADMIN,OPERATOR'],
             'password' => ['nullable', 'string', 'min:8'],
         ]);
 
         $account->full_name = $validated['full_name'];
         $account->email = $validated['email'];
-        $account->role = $validated['role'];
 
         if (!empty($validated['password'])) {
             $account->password = Hash::make($validated['password']);

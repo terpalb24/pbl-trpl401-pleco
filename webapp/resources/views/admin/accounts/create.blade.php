@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>Tambah Pengguna | PLECO</title>
+    <title>PLECO | Tambah Pengguna</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -18,20 +18,20 @@
 
         <div id="main-content" class="relative w-full h-[calc(100vh-4rem)] overflow-y-auto lg:ml-64 bg-slate-50/50">
             <main class="p-8 h-full">
-                
+
                 <div class="mb-8">
                     <h2 class="font-bold text-slate-800 text-2xl tracking-tight">Tambah Pengguna</h2>
                     <p class="text-slate-500 text-sm mt-1">Tambahkan pengguna baru ke dalam website</p>
                 </div>
 
                 <div class="bg-white rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-slate-100 p-10 w-full min-h-[calc(100vh-14rem)] flex flex-col items-start">
-                    
+
                     <!-- Form Fields -->
                     <form method="POST" action="{{ route('accounts.store') }}" class="w-full">
                         @csrf
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
-                            
+
                             <!-- Baris 1: Nama Lengkap -->
                             <div>
                                 <label for="full_name" class="block mb-2 text-sm font-medium text-slate-700">Nama Lengkap</label>

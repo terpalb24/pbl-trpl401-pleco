@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>PLECO - Membersihkan perairan tenang</title>
+    <title>PLECO - Membersihkan Perairan Tenang</title>
 
     <meta name="description"
         content="PLECO hadir sebagai solusi autonomous untuk memantau dan membersihkan sampah di perairan secara lebih cerdas.">
@@ -19,7 +19,7 @@
 
     <main class="max-w-[1440px] mx-auto">
         <x-navbar.index></x-navbar.index>
-        
+
         <div class="px-6 lg:px-8 py-10 space-y-24">
             <!-- Hero Section -->
             <section id="home" class="relative">

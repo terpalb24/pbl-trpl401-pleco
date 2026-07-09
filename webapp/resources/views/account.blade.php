@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>Pengaturan Akun</title>
+    <title>PLECO | Pengaturan Akun</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -65,7 +65,13 @@
                         <!-- Baris 2 -->
                         <div>
                             <label for="password" class="block mb-2 text-sm font-medium text-slate-700">Kata Sandi Baru <span class="text-slate-400 font-normal">(opsional)</span></label>
-                            <input type="password" id="password" name="password" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition-colors" placeholder="••••••••">
+                            <input
+                                type="password" id="password" name="password"
+                                class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition-colors
+                                placeholder-gray-400"
+                                placeholder="••••••••"
+                            >
                             @error('password')
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -73,7 +79,13 @@
 
                         <div>
                             <label for="password_confirmation" class="block mb-2 text-sm font-medium text-slate-700">Konfirmasi Kata Sandi Baru</label>
-                            <input type="password" id="password_confirmation" name="password_confirmation" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition-colors" placeholder="••••••••">
+                            <input
+                                type="password" id="password_confirmation" name="password_confirmation"
+                                class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition-colors
+                                placeholder-gray-400"
+                                placeholder="••••••••"
+                            >
                         </div>
 
                         <div>
