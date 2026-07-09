@@ -22,7 +22,7 @@
             </button>
         </div>
     </div>
-    <canvas id="myChart"></canvas>
+    <canvas id="myChart" height="100"></canvas>
 </div>
 
 <script src="{{ @asset('graph/chart.umd.min.js') }}"></script>
