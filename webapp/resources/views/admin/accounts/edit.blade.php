@@ -9,7 +9,7 @@
 
     <link class="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="{{ @asset('accounts/sweetalert2.min.js') }}"></script>
+    <script src="{{ @asset('js/accounts/sweetalert2.min.js') }}"></script>
 </head>
 <body class="bg-white">
     <x-navbar.loggedin></x-navbar.loggedin>
@@ -70,7 +70,12 @@
 
                             <!-- Baris 2: Simpan Button -->
                             <div>
-                                <button type="submit" class="w-full text-white bg-[#2F27CE] hover:bg-[#1c159e] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5 text-center shadow-sm transition-all hover:shadow-md h-[42px] cursor-pointer">Simpan</button>
+                                <button
+                                    type="submit"
+                                    class="w-full text-white bg-[#2F27CE] hover:bg-[#1c159e] focus:ring-4
+                                    focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5
+                                    text-center shadow-sm transition-all hover:shadow-md h-[42px] cursor-pointer"
+                                >Simpan</button>
                             </div>
 
                         </div>
