@@ -8,22 +8,26 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('trash_counter', function (Blueprint $table) {
+        Schema::create('collected_trash', function (Blueprint $table) {
             $table->uuid('robot_id');
             $table->string('trash_id', 32);
-            $table->unsignedInteger('amount')->default(0);
+            $table->unsignedInteger('total');
+            $table->date('collected_at');
 
             $table->foreign('trash_id')
                 ->references('trash_id')
                 ->on('trash_types')
                 ->onDelete('cascade');
 
-            $table->index(['robot_id']);
+            $table->foreign('robot_id')
+                ->references('robot_id')
+                ->on('robots')
+                ->onDelete('cascade');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('trash_counter');
+        Schema::dropIfExists('collected_trash');
     }
 };
