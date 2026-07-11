@@ -207,7 +207,7 @@
         let socket = null;
         let reconnectTimeout = null;
 
-        const wsUrl = 'ws://127.0.0.1:7777/pull'; // wss://pleco-wss.hosea.dev/pull
+        const wsUrl = 'wss://pleco-wss.hosea.dev/pull';
 
         function connectWebSocket() {
             if (reconnectTimeout) {
