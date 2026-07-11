@@ -1,6 +1,9 @@
 import config from '../config.json' with { type: 'json' };
 const STATUS_CODES = config.status_codes;
+
 export let pullConnections = [];
+export let batteryPercent = 0.0;
+export const setBatteryPercent = (percent) => batteryPercent = percent;
 
 
 
@@ -29,6 +32,7 @@ export async function checkConnection(ws, db, broadcast) {
 	}
 
 	ws.send(STATUS_CODES.OK);
+	ws.send('BAT:' + batteryPercent);
 }
 
 export async function connDisconnected(ws, broadcast) {

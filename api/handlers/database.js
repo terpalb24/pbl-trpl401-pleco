@@ -2,7 +2,7 @@ import * as mariadb from 'mariadb';
 import { readFileSync } from 'fs';
 
 import * as robotHandler from '../database/robots.js';
-import * as trashCounterHandler from '../database/trash_counter.js';
+import * as collectedTrashHandler from '../database/collected_trash.js';
 
 let pool;
 
@@ -33,7 +33,7 @@ export async function getConn() {
 }
 
 export const robot = robotHandler;
-export const trashCounter = trashCounterHandler;
+export const collectedTrash = collectedTrashHandler;
 
 
 

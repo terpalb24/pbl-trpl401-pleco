@@ -160,25 +160,11 @@
         const uiStatusText = document.getElementById('status-text');
 
         const uiParamStatus = document.getElementById('param-status');
-        const uiParamHeading = document.getElementById('param-heading');
         const uiParamBatteryText = document.getElementById('param-battery-text');
         const uiParamBatteryBar = document.getElementById('param-battery-bar');
 
-        function updateRobotUI(data) {
-            const lat = parseFloat(data[0]).toFixed(6);
-            const lng = parseFloat(data[1]).toFixed(6);
-            const heading = parseInt(data.heading || 0);
-            const battery = parseInt(data.battery || 0);
-            const status = data.status || 'Active';
-
-            // Update Teks Parameter
-            if (uiParamStatus) uiParamStatus.innerText = status;
-            if (uiParamHeading) uiParamHeading.innerText = `${heading}°`;
-            if (uiParamLat) uiParamLat.innerText = lat;
-            if (uiParamLng) uiParamLng.innerText = lng;
+        function updateRobotBattery(battery) {
             if (uiParamBatteryText) uiParamBatteryText.innerText = `${battery}%`;
-
-            // Update Progress Bar Baterai
             if (uiParamBatteryBar) {
                 uiParamBatteryBar.style.width = `${battery}%`;
                 if (battery < 20) {
@@ -189,6 +175,17 @@
                     uiParamBatteryBar.className = "bg-emerald-500 h-2 rounded-full transition-all duration-500";
                 }
             }
+        }
+
+        function updateRobotUI(data) {
+            const lat = parseFloat(data[0]).toFixed(6);
+            const lng = parseFloat(data[1]).toFixed(6);
+            const status = data.status || 'Active';
+
+            // Update Teks Parameter
+            if (uiParamStatus) uiParamStatus.innerText = status;
+            if (uiParamLat) uiParamLat.innerText = lat;
+            if (uiParamLng) uiParamLng.innerText = lng;
 
             // Update Marker Peta & Gambar polyline lintasan
             const newPos = [parseFloat(lat), parseFloat(lng)];
@@ -200,13 +197,6 @@
             if (pathPoints.length > 100) {
                 pathPoints.shift();
                 robotPath.setLatLngs(pathPoints);
-                // robotPath.setLatLngs(robotPathPoints);
-            }
-
-            // Atur Rotasi Arah Marker (Heading)
-            const directionEl = document.getElementById('marker-direction');
-            if (directionEl) {
-                directionEl.style.transform = `rotate(${heading}deg)`;
             }
 
             // Geser peta agar tetap mengikuti robot secara mulus
@@ -217,7 +207,7 @@
         let socket = null;
         let reconnectTimeout = null;
 
-        const wsUrl = 'wss://pleco-wss.hosea.dev/pull';
+        const wsUrl = 'ws://127.0.0.1:7777/pull'; // wss://pleco-wss.hosea.dev/pull
 
         function connectWebSocket() {
             if (reconnectTimeout) {
@@ -258,12 +248,20 @@
 
                 socket.onmessage = function (event) {
                     try {
-                        const data = event.data.split(" ");
-                        if (data.length !== 2) return;
-                        updateRobotUI(data);
-                    } catch (e) {
-                        console.error(e.message);
-                    }
+                        const rawData = event.data;
+                        if (rawData.startsWith('BAT:')) {
+                            // Remove the prefix to fetch the real value
+                            const data = event.data.replace('BAT:', '');
+                            const numData = Number(data);
+                            if (isNaN(numData) || numData < 0 || numData > 100) return;
+                            updateRobotBattery(numData);
+                        } else if (rawData.startsWith('GPS:')) {
+                            // Remove the prefix to fetch the real value
+                            const data = event.data.replace('GPS:', '').split(" ");
+                            if (data.length !== 2) return;
+                            updateRobotUI(data);
+                        }
+                    } catch (e) {}
                 };
 
                 socket.onerror = function () {
