@@ -13,16 +13,16 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "^11.11.0",
+      "version": "^11.15.1",
       "onFail": "download"
     }
   },
   "type": "module",
   "dependencies": {
-    "@hono/node-server": "^2.0.8",
+    "@hono/node-server": "^2.0.10",
     "dotenv": "^17.4.2",
-    "hono": "^4.12.29",
+    "hono": "^4.12.31",
     "mariadb": "^3.5.3",
-    "ws": "^8.21.0"
+    "ws": "^8.21.1"
   }
 }
