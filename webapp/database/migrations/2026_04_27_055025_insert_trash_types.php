@@ -18,16 +18,8 @@ return new class extends Migration
                 'trash_name' => 'Kantong Plastik',
             ],
             [
-                'trash_id' => 'PLASTIC_PACKAGING',
-                'trash_name' => 'Kemasan Plastik',
-            ],
-            [
-                'trash_id' => 'STYROFOAM',
-                'trash_name' => 'Styrofoam',
-            ],
-            [
-                'trash_id' => 'CAN',
-                'trash_name' => 'Kaleng',
+                'trash_id' => 'MILK_CARTON',
+                'trash_name' => 'Karton Susu',
             ]
         ]);
     }
