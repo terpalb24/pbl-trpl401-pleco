@@ -15,7 +15,7 @@ return new class extends Migration
         $robotId = (string) Str::uuid();
 
         DB::table('robots')->insert([
-            'robot_id' => (string) Str::uuid(),
+            'robot_id' => $robotId,
             'robot_name' => 'Robot 1',
             'api_key' => Str::random(64),
             'location_coordinates' => null,
