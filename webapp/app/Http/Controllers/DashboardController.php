@@ -20,17 +20,17 @@ class DashboardController extends Controller
             ->groupBy('trash_id')
             ->get();
 
-        $bottle_total = $total->filter(function ($item) {
-            return $item->trash_id == 'BOTTLE';
-        })->first()->total_amount;
+        $bottle_total = $total
+        ->first(fn ($item) => $item->trash_id == 'BOTTLE')
+        ?->total_amount ?? 0;
 
-        $plastic_bag_total = $total->filter(function ($item) {
-            return $item->trash_id == 'PLASTIC_BAG';
-        })->first()->total_amount;
+        $plastic_bag_total = $total
+        ?->first(fn ($item) => $item->trash_id == 'PLASTIC_BAG')
+        ?->total_amount ?? 0;
 
-        $milk_carton_total = $total->filter(function ($item) {
-            return $item->trash_id == 'MILK_CARTON';
-        })->first()->total_amount;
+        $milk_carton_total = $total
+        ?->first(fn ($item) => $item->trash_id == 'MILK_CARTON')
+        ?->total_amount ?? 0;
 
         $data = [
             'bottle' => $bottle_total,
