@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -11,13 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
+        $robotId = (string) Str::uuid();
+
         DB::table('robots')->insert([
             'robot_id' => (string) Str::uuid(),
             'robot_name' => 'Robot 1',
             'api_key' => Str::random(64),
             'location_coordinates' => null,
         ]);
+
+        DB::table('collected_trash')->insert([
+            'robot_id' => $robotId,
+            'trash_id' => 'CAN',
+            'total' => 0,
+            'collected_at' => Carbon::today()->toDateString(),
+        ]);
     }
+
 
     /**
      * Reverse the migrations.
