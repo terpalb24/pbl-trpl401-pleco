@@ -60,10 +60,10 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                Pdo\Mysql::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-                Pdo\Mysql::MYSQL_ATTR_SSL_CERT => env('MYSQL_ATTR_SSL_CERT'),
-                Pdo\Mysql::MYSQL_ATTR_SSL_KEY => env('MYSQL_ATTR_SSL_KEY'),
-                Pdo\Mysql::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => env('MYSQL_ATTR_SSL_VERIFY_SERVER_CERT', true),
+                Pdo\Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                Pdo\Mysql::ATTR_SSL_CERT => env('MYSQL_ATTR_SSL_CERT'),
+                Pdo\Mysql::ATTR_SSL_KEY => env('MYSQL_ATTR_SSL_KEY'),
+                Pdo\Mysql::ATTR_SSL_VERIFY_SERVER_CERT => env('MYSQL_ATTR_SSL_VERIFY_SERVER_CERT', true),
             ], fn($value) => $value !== null && $value !== '') : [],
         ],
 
@@ -83,10 +83,10 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                Pdo\Mysql::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-                Pdo\Mysql::MYSQL_ATTR_SSL_CERT => env('MYSQL_ATTR_SSL_CERT'),
-                Pdo\Mysql::MYSQL_ATTR_SSL_KEY => env('MYSQL_ATTR_SSL_KEY'),
-                Pdo\Mysql::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => env('MYSQL_ATTR_SSL_VERIFY_SERVER_CERT', true),
+                Pdo\Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                Pdo\Mysql::ATTR_SSL_CERT => env('MYSQL_ATTR_SSL_CERT'),
+                Pdo\Mysql::ATTR_SSL_KEY => env('MYSQL_ATTR_SSL_KEY'),
+                Pdo\Mysql::ATTR_SSL_VERIFY_SERVER_CERT => env('MYSQL_ATTR_SSL_VERIFY_SERVER_CERT', true),
             ], fn($value) => $value !== null && $value !== '') : [],
         ],
 
